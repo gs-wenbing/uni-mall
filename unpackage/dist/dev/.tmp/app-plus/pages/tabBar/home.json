@@ -1,0 +1,46 @@
+{
+  "pullToRefresh": {
+    "support": true,
+    "style": "circle",
+    "offset": "64px"
+  },
+  "titleNView": {
+    "type": "transparent",
+    "searchInput": {
+      "backgroundColor": "rgba(245, 245, 245)",
+      "borderRadius": "16px",
+      "placeholder": "点击搜索商品",
+      "disabled": true,
+      "placeholderColor": "#606266"
+    },
+    "tags": [
+      {
+        "type": "default",
+        "tag": "img",
+        "src": "/static/logo.jpg",
+        "position": {
+          "left": "10px",
+          "top": "7px",
+          "width": "75px",
+          "height": "30px"
+        }
+      }
+    ],
+    "buttons": [
+      {
+        "width": "90px",
+        "float": "left",
+        "color": "#fff",
+        "background": "rgba(0,0,0,0)"
+      },
+      {
+        "fontSrc": "/static/yticon.ttf",
+        "text": "",
+        "fontSize": "26",
+        "color": "#ffffff",
+        "background": "rgba(0,0,0,0)"
+      }
+    ]
+  },
+  "usingComponents": {}
+}

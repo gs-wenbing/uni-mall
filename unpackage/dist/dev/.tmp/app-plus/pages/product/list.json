@@ -1,0 +1,29 @@
+{
+  "pullToRefresh": {
+    "support": true,
+    "style": "circle"
+  },
+  "titleNView": {
+    "searchInput": {
+      "backgroundColor": "rgba(245, 245, 245)",
+      "borderRadius": "16px",
+      "placeholder": "点击搜索商品名称，商品型号",
+      "disabled": true,
+      "placeholderColor": "#606266"
+    },
+    "buttons": [
+      {
+        "fontSrc": "/static/yticon.ttf",
+        "text": "",
+        "fontSize": "28",
+        "width": "50px",
+        "color": "#ffffff",
+        "background": "rgba(0,0,0,0)",
+        "redDot": true
+      }
+    ]
+  },
+  "usingComponents": {
+    "uni-load-more": "/components/uni-load-more/uni-load-more"
+  }
+}

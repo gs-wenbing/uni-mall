@@ -1,0 +1,25 @@
+{
+  "navigationBarTitleText": "我的",
+  "bounce": "none",
+  "titleNView": {
+    "buttons": [
+      {
+        "fontSrc": "/static/yticon.ttf",
+        "text": "",
+        "fontSize": "24",
+        "color": "#ffffff",
+        "width": "46px",
+        "background": "rgba(0,0,0,0)"
+      },
+      {
+        "fontSrc": "/static/yticon.ttf",
+        "text": "",
+        "fontSize": "28",
+        "color": "#ffffff",
+        "background": "rgba(0,0,0,0)",
+        "redDot": true
+      }
+    ]
+  },
+  "usingComponents": {}
+}
