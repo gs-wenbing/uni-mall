@@ -50,7 +50,7 @@ page,
     position: relative;
 }
 .navbar .nav-item.current {
-      color: #fa436a;
+      color: #E60012;
 }
 .navbar .p-box {
     display: -webkit-box;
@@ -84,7 +84,7 @@ page,
       color: #888;
 }
 .navbar .p-box .yticon.active {
-        color: #fa436a;
+        color: #E60012;
 }
 .navbar .p-box .xia {
       -webkit-transform: scaleY(-1);
@@ -327,9 +327,9 @@ page,
       position: relative;
 }
 .cate-list .cate-flow .active {
-      color: #fa436a;
+      color: #E60012;
       background-color: #F4F4F4;
-      border: 1px solid #fa436a;
+      border: 1px solid #E60012;
 }
 .cate-list .cate-item-p {
     display: -webkit-box;

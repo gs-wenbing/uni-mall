@@ -44,7 +44,7 @@ page,
   position: relative;
 }
 .f-item.active {
-    color: #fa436a;
+    color: #E60012;
     background: #f8f8f8;
 }
 .f-item.active:before {
@@ -57,7 +57,7 @@ page,
               transform: translateY(-50%);
       height: 36rpx;
       width: 8rpx;
-      background-color: #fa436a;
+      background-color: #E60012;
       border-radius: 0 4px 4px 0;
       opacity: .8;
 }

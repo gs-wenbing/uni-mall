@@ -1,9 +1,6 @@
 import Vue from 'vue'
 import store from './store'
-import Service from './service'
 import App from './App'
-
-import Json from './Json' //测试用数据
 
 // 管理账号信息
 const USERS_KEY = 'USERS_KEY';
@@ -12,7 +9,7 @@ const STATE_KEY = 'STATE_KEY';
 const API_URL = "https://mockapi.eolinker.com/p6QCAEw5a26610182ff15ddc6f4f212776fdfbb3ce18328/";
 
 const callApi = function(params, resolve) {
-	if(!params.notLoading)uni.showLoading();
+	if(!params.notLoading)uni.showNavigationBarLoading();
 	let resultData = {};
 	let url = API_URL + params.action;
 	console.log(url)
@@ -25,7 +22,7 @@ const callApi = function(params, resolve) {
 			'Content-Type': 'application/json'
 		},
 		success: (result) => {
-			if(!params.notLoading)uni.hideLoading();
+			if(!params.notLoading)uni.hideNavigationBarLoading();
 			if (result.statusCode == 200) {
 				if (result.data.result == 0) {
 					resultData.IsSuccess = true;
@@ -44,7 +41,7 @@ const callApi = function(params, resolve) {
 	
 		},
 		fail: (data, code) => {
-			if(!params.notLoading)uni.hideLoading();
+			if(!params.notLoading)uni.hideNavigationBarLoading();
 			resultData.IsSuccess = false;
 			resultData.msg = JSON.stringify(data);
 			resolve(resultData);
@@ -52,36 +49,6 @@ const callApi = function(params, resolve) {
 	});
 }
 
-const getUserStorage = function() {
-	let ret = '';
-	ret = uni.getStorageSync(USERS_KEY);
-	if (ret) {
-		return JSON.parse(ret);
-	} else {
-		return null;
-	}
-}
-const clearUsers = function() {
-	uni.removeStorageSync(USERS_KEY);
-}
-
-const setUserStorage = function(userInfo) {
-	uni.setStorageSync(USERS_KEY, JSON.stringify(userInfo));
-}
-
-const getStorage = function(key) {
-	let ret = '';
-	ret = uni.getStorageSync(key);
-	if (ret) {
-		return JSON.parse(ret);
-	} else {
-		return null;
-	}
-}
-
-const setStorage = function(key, info) {
-	uni.setStorageSync(key, JSON.stringify(info));
-}
 
 const getNowFormatDate = function() {
 	var date = new Date();
@@ -113,13 +80,13 @@ const msg = (title, duration = 1500, mask = false, icon = 'none') => {
 		icon
 	});
 }
-const json = type=>{
-	//模拟异步请求数据
-	return new Promise(resolve=>{
-		setTimeout(()=>{
-			resolve(Json[type]);
-		}, 500)
-	})
+
+const putExtra = obj =>{
+	return encodeURIComponent(JSON.stringify(obj));
+}
+
+const getExtra = obj =>{
+	return JSON.parse(decodeURIComponent(obj));
 }
 
 
@@ -145,14 +112,10 @@ Vue.prototype.$fire = new Vue();
 Vue.prototype.$store = store;
 Vue.prototype.$api = {
 	msg,
-	json,
 	prePage,
-	getUserStorage,
-	setUserStorage,
-	getStorage,
-	setStorage,
-	clearUsers,
-	callApix
+	callApix,
+	putExtra,
+	getExtra
 };
 
 App.mpType = 'app'

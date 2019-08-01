@@ -18,7 +18,7 @@
 				<block v-for="(item, index) in cartList" :key="item.GoodsID">
 					<view class="cart-item" :class="{'b-b': index!==cartList.length-1}">
 						<view class="image-wrapper">
-							<image :src="item.ImagePath" :class="[item.loaded]" mode="aspectFill" lazy-load @load="onImageLoad('cartList', index)"
+							<image :src="item.DefaultPicURL" :class="[item.loaded]" mode="aspectFill" lazy-load @load="onImageLoad('cartList', index)"
 							 @error="onImageError('cartList', index)"></image>
 							<view class="yticon icon-xuanzhong2 checkbox" :class="{checked: item.checked}" @click="check('item', index)"></view>
 						</view>
@@ -121,7 +121,7 @@
 			},
 			//监听image加载失败
 			onImageError(key, index) {
-				this[key][index].ImagePath = '/static/errorImage.jpg';
+				this[key][index].DefaultPicURL = '/static/errorImage.jpg';
 			},
 			navToLogin() {
 				uni.navigateTo({
@@ -193,19 +193,13 @@
 				let goodsData = [];
 				list.forEach(item => {
 					if (item.checked) {
-						goodsData.push({
-							attr_val: item.GoodsModel,
-							CartNum: item.CartNum
-						})
+						goodsData.push(item);
 					}
 				})
-
-				// uni.navigateTo({
-				// 	url: `/pages/order/createOrder?data=${JSON.stringify({
-				// 		goodsData: goodsData
-				// 	})}`
-				// })
-				this.$api.msg('跳转下一页 sendData');
+				//为了模拟数据，正常项目里按照业务传值
+				uni.navigateTo({
+					url: `/pages/order/placeOrder?data=${this.$api.putExtra(goodsData)}`
+				})
 			}
 		}
 	}

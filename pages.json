@@ -174,9 +174,34 @@
 				}
 			}
 		}, {
+			"path": "pages/order/placeOrder",
+			"style": {
+				"navigationBarTitleText": "提交订单"
+			}
+		},{
+			"path": "pages/pay/pay",
+			"style": {
+				"navigationBarTitleText": "支付"
+			}
+		},{
+			"path": "pages/pay/paySuccess",
+			"style": {
+				"navigationBarTitleText": "支付成功"
+			}
+		}, {
 			"path": "pages/notice/notice",
 			"style": {
 				"navigationBarTitleText": "通知"
+			}
+		}, {
+			"path": "pages/address/address",
+			"style": {
+				"navigationBarTitleText": "收货地址管理"
+			}
+		}, {
+			"path": "pages/address/addressEdit",
+			"style": {
+				"navigationBarTitleText": "编辑收货地址"
 			}
 		}, {
 			"path": "pages/setting/setting",

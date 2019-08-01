@@ -20,11 +20,16 @@ page {
   -webkit-align-items: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 20rpx 30rpx;
+  padding: 30rpx 30rpx 30rpx 10rpx;
   background: #fff;
   position: relative;
 }
+.checkbox.checked {
+  margin-left: 20rpx;
+  color: #E60012;
+}
 .wrapper {
+  margin-left: 30rpx;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -39,6 +44,24 @@ page {
       -ms-flex: 1;
           flex: 1;
 }
+.u-box {
+  font-size: 30rpx;
+  color: #303133;
+}
+.u-box .name {
+    margin-right: 30rpx;
+}
+.u-box .tag {
+    font-size: 24rpx;
+    color: #E60012;
+    margin-left: 30rpx;
+    color: #fff;
+    background: #E60012;
+    border: 1px solid #E60012;
+    border-radius: 4rpx;
+    padding: 2rpx 10rpx;
+    line-height: 1;
+}
 .address-box {
   display: -webkit-box;
   display: -webkit-flex;
@@ -48,28 +71,9 @@ page {
   -webkit-align-items: center;
       -ms-flex-align: center;
           align-items: center;
-}
-.address-box .tag {
-    font-size: 24rpx;
-    color: #fa436a;
-    margin-right: 10rpx;
-    background: #fffafb;
-    border: 1px solid #ffb4c7;
-    border-radius: 4rpx;
-    padding: 4rpx 10rpx;
-    line-height: 1;
-}
-.address-box .address {
-    font-size: 30rpx;
-    color: #303133;
-}
-.u-box {
-  font-size: 28rpx;
+  font-size: 26rpx;
   color: #909399;
-  margin-top: 16rpx;
-}
-.u-box .name {
-    margin-right: 30rpx;
+  margin-top: 24rpx;
 }
 .icon-bianji {
   display: -webkit-box;
@@ -107,7 +111,7 @@ page {
   height: 80rpx;
   font-size: 32rpx;
   color: #fff;
-  background-color: #fa436a;
+  background-color: #E60012;
   border-radius: 10rpx;
   -webkit-box-shadow: 1px 2px 5px rgba(219, 63, 96, 0.4);
           box-shadow: 1px 2px 5px rgba(219, 63, 96, 0.4);

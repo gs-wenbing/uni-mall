@@ -4,20 +4,20 @@
 			<swiper indicator-dots circular=true duration="400">
 				<swiper-item class="swiper-item" v-for="(GoodsPicURL,index) in GoodsPicURLList" :key="index">
 					<view class="image-wrapper">
-						<image @click="previewImage" :src="GoodsPicURL.PicURL" :class="[GoodsPicURL.loaded]" mode="aspectFill" lazy-load @load="onImageLoad('GoodsPicURLList', index)"
-							 @error="onImageError('GoodsPicURLList', index)"></image>
+						<image @click="previewImage" :src="GoodsPicURL.PicURL" :class="[GoodsPicURL.loaded]" mode="aspectFill" lazy-load
+						 @load="onImageLoad('GoodsPicURLList', index)" @error="onImageError('GoodsPicURLList', index)"></image>
 					</view>
 				</swiper-item>
 			</swiper>
 		</view>
 
 		<view class="introduce-section">
-			<text class="title"> {{GoodsDetail.GoodsName}} </text>
+			<text class="title"> {{TransGoods.GoodsName}} </text>
 			<view class="price-box">
 				<text class="price-tip">¥</text>
-				<text class="price">{{GoodsDetail.Price}}</text>
-				<text class="m-price">¥{{GoodsDetail.OldPrice}}</text>
-				<text class="coupon-tip">{{GoodsDetail.SaleDiscount}}折</text>
+				<text class="price">{{TransGoods.Price}}</text>
+				<text class="m-price" v-if="TransGoods.OldPrice > TransGoods.Price">¥{{TransGoods.OldPrice}}</text>
+				<text class="coupon-tip" v-if="TransGoods.SaleDiscount">{{TransGoods.SaleDiscount}}折</text>
 			</view>
 			<view class="bot-row">
 				<text>销量: 108</text>
@@ -139,6 +139,7 @@
 				specSelected: [],
 				favorite: true,
 				cartNum: 0,
+				TransGoods: {},
 				GoodsDetail: {},
 				GoodsPicURLList: [],
 				GoodsSkuList: [],
@@ -146,10 +147,9 @@
 			};
 		},
 		async onLoad(options) {
-
-			//接收传值,id里面放的是标题，因为测试数据并没写id 
-			let id = options.id;
-
+			//接收传值goods
+			let goods = options.goods;
+			this.TransGoods = this.$api.getExtra(goods);
 			this.loadData();
 		},
 		methods: {
@@ -162,11 +162,16 @@
 				if (result.IsSuccess) {
 					//描述图片信息
 					var GoodsDesc = decodeURIComponent(result.data.GoodsDetail.GoodsDesc);
-					GoodsDesc = GoodsDesc.replace(new RegExp("{IMGIP}", 'g'), "res.genvana.cn").replace(new RegExp("<img ", 'g'), '<img style="width:100%;display:block;" ');
+					GoodsDesc = GoodsDesc.replace(new RegExp("{IMGIP}", 'g'), "res.genvana.cn").replace(new RegExp("<img ", 'g'),
+						'<img style="width:100%;display:block;" ');
 					result.data.GoodsDetail.GoodsDesc = GoodsDesc;
 
 					this.GoodsDetail = result.data.GoodsDetail;
 					this.GoodsPicURLList = result.data.GoodsPicURLList;
+					//为了测试详情页的图片不一样，正在项目里是不要的
+					this.GoodsPicURLList.unshift({
+						PicURL:this.TransGoods.DefaultPicURL
+					});
 					this.GoodsSkuList = result.data.GoodsSkuList;
 					this.GoodsUnitTemplateList = result.data.GoodsUnitTemplateList;
 				}
@@ -182,7 +187,7 @@
 			/**
 			 * 预览图片
 			 */
-			previewImage(){
+			previewImage() {
 				let PicURLList = [];
 				this.GoodsPicURLList.forEach(item => {
 					PicURLList.push(item.PicURL);
@@ -192,7 +197,7 @@
 					longPressActions: {
 						itemList: ['保存图片', '收藏'],
 						success: function(data) {
-							if(data.tapIndex==0){
+							if (data.tapIndex == 0) {
 								uni.showNavigationBarLoading()
 								//下载文件
 								uni.downloadFile({
@@ -203,7 +208,7 @@
 											//保存到相册
 											uni.saveImageToPhotosAlbum({
 												filePath: res.tempFilePath,
-												success: function () {
+												success: function() {
 													console.log('save success');
 													uni.hideNavigationBarLoading();
 												}
@@ -211,7 +216,7 @@
 										}
 									}
 								});
-								
+
 							}
 							console.log('选中了第' + (data.tapIndex + 1) + '个按钮,第' + (data.index + 1) + '张图片');
 						},
@@ -250,11 +255,15 @@
 				this.favorite = !this.favorite;
 			},
 			buy() {
-				// uni.navigateTo({
-				// 	url: `/pages/order/createOrder`
-				// })
+				//为了模拟数据，正常项目里按照业务传值
+				let data = [];
+				this.TransGoods.CartNum = 1;
+				data.push(this.TransGoods);
+				uni.navigateTo({
+					url: `/pages/order/placeOrder?data=${this.$api.putExtra(data)}`
+				})
 			},
-			addCart(){
+			addCart() {
 				this.cartNum++;
 				this.$api.msg("添加成功！在购物车等亲")
 			},
@@ -329,7 +338,7 @@
 		}
 
 		.m-price {
-			margin: 0 12upx;
+			margin: 0 32upx;
 			color: $font-color-light;
 			text-decoration: line-through;
 		}
@@ -576,16 +585,18 @@
 			color: $font-color-base;
 			width: 96upx;
 			height: 80upx;
-			.gouwuche{
-				margin-top:-20upx;
+
+			.gouwuche {
+				margin-top: -20upx;
 			}
-			.num{
+
+			.num {
 				position: relative;
 				background: $uni-color-primary;
 				border: 1px solid $uni-color-primary;
 				text-align: center;
-				margin-top:-10rpx;
-				margin-left:40rpx;
+				margin-top: -10rpx;
+				margin-left: 40rpx;
 				font-size: 8px;
 				width: 30upx;
 				height: 30upx;
@@ -593,6 +604,7 @@
 				color: #fff;
 				border-radius: 50%;
 			}
+
 			.yticon {
 				font-size: 40upx;
 				line-height: 48upx;

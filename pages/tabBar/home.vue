@@ -27,15 +27,15 @@
 		</view>
 		<!-- 分类 -->
 		<view class="cate-section">
-			<view class="cate-item">
+			<view @tap="navToList('新品推荐')" class="cate-item">
 				<image src="/static/temp/shortcut-new.png"></image>
 				<text>新品推荐</text>
 			</view>
-			<view class="cate-item">
+			<view @tap="navToList('热销市场')" class="cate-item">
 				<image src="/static/temp/shortcut-hot.png"></image>
 				<text>热销市场</text>
 			</view>
-			<view class="cate-item">
+			<view @tap="navToList('促销折扣')" class="cate-item">
 				<image src="/static/temp/shortcut-discount.png"></image>
 				<text>促销折扣</text>
 			</view>
@@ -43,25 +43,21 @@
 				<image src="/static/temp/shortcut-brand.png"></image>
 				<text>品牌街</text>
 			</view>
-			<view class="cate-item">
-				<image src="/static/temp/shortcut-suggest.png"></image>
-				<text>建议订单</text>
-			</view>
 		</view>
 
 		<!-- 爆款楼层 -->
 		<view class="seckill-section m-t">
-			<view class="s-header">
+			<view class="s-header"  @tap="navToList('爆款商品')">
 				<image class="s-img" src="/static/icon-fire.png" mode="widthFix"></image>
 				<text class="tip">爆款商品</text>
 			</view>
-			
+
 			<scroll-view class="floor-list" scroll-x>
 				<view class="scoll-wrapper">
 					<view v-for="(goods, index) in seckillGoodsList" :key="index" class="floor-item" @click="navToDetailPage(goods)">
 						<view class="image-wrapper">
 							<image :src="goods.DefaultPicURL" :class="[goods.loaded]" mode="aspectFill" lazy-load @load="onImageLoad('seckillGoodsList', index)"
-									 @error="onImageError('seckillGoodsList', index)"></image>
+							 @error="onImageError('seckillGoodsList', index)"></image>
 						</view>
 						<text class="title clamp">{{goods.GoodsName}}</text>
 						<text class="subtitle clamp">{{goods.GoodsModel}}</text>
@@ -74,7 +70,7 @@
 
 		<block v-for="(mallGoods,index) in mallGoodsList" :key="index">
 			<!-- 分类推荐楼层 -->
-			<view class="f-header m-t">
+			<view class="f-header m-t"  @tap="navToList(mallGoods.GoodsClassName)">
 				<image src="/static/temp/h1.png"></image>
 				<view class="tit-box">
 					<text class="tit">{{mallGoods.GoodsClassName}}</text>
@@ -83,10 +79,10 @@
 			</view>
 			<view class="class-floor">
 				<view class="guess-section">
-					<view v-for="(goods, index2) in mallGoods.MallGoodsList" :key="index2" class="guess-item" @click="navToDetailPage(item)">
+					<view v-for="(goods, index2) in mallGoods.MallGoodsList" :key="index2" class="guess-item" @click="navToDetailPage(goods)">
 						<view class="image-wrapper">
 							<image :src="goods.DefaultPicURL" :class="[goods.loaded]" mode="aspectFill" lazy-load @load="onFloorImageLoad('mallGoodsList',index, index2)"
-									 @error="onFloorImageError('mallGoodsList',index, index2)"></image>
+							 @error="onFloorImageError('mallGoodsList',index, index2)"></image>
 						</view>
 						<!-- <image :src="goods.DefaultPicURL" mode="aspectFill"></image> -->
 						<text class="title clamp">{{goods.GoodsName}}</text>
@@ -104,12 +100,24 @@
 
 		data() {
 			return {
-				titleNViewBackground: '',
+				titleNViewBackground: 'rgb(245,95,113)',
 				swiperCurrent: 0,
-				swiperLength: 0,
-				carouselList: [],
+				swiperLength: 3,
+				carouselList: [{
+						src: "/static/banner-1.png",
+						background: "rgb(245,95,113)",
+					},
+					{
+						src: "/static/banner-2.png",
+						background: "rgb(250,103,95)",
+					},
+					{
+						src: "/static/banner-3.png",
+						background: "rgb(250,123,49)",
+					}
+				],
 				mallGoodsList: [],
-				seckillGoodsList:[]
+				seckillGoodsList: []
 			};
 		},
 
@@ -127,36 +135,31 @@
 		methods: {
 			async getSeckillGoodsList(type) {
 				let result = await this.$api.callApix({
-					param:"",
-					action:"home/getSeckillGoodsList",
+					param: "",
+					action: "home/getSeckillGoodsList",
 					notLoading: true
 				});
-				if(result.IsSuccess){
+				if (result.IsSuccess) {
 					this.seckillGoodsList = result.data;
 				}
-				if(type=="refrash"){
+				if (type == "refrash") {
 					uni.stopPullDownRefresh();
 				}
 			},
 			async loadData(type) {
-				let carouselList = await this.$api.json('carouselList');
-				this.titleNViewBackground = carouselList[0].background;
-				this.swiperLength = carouselList.length;
-				this.carouselList = carouselList;
-				
-				let notLoading=false;
-				if(type=="refrash"){
-					notLoading=true;
+				let notLoading = false;
+				if (type == "refrash") {
+					notLoading = true;
 				}
 				let result = await this.$api.callApix({
-					param:"",
-					action:"home/getMallGoodsByClass",
-					notLoading:notLoading
+					param: "",
+					action: "home/getMallGoodsByClass",
+					notLoading: notLoading
 				});
-				if(result.IsSuccess){
+				if (result.IsSuccess) {
 					this.mallGoodsList = result.data;
 				}
-				if(type=="refrash"){
+				if (type == "refrash") {
 					uni.stopPullDownRefresh();
 				}
 			},
@@ -176,7 +179,7 @@
 			onImageError(key, index) {
 				this[key][index].DefaultPicURL = '/static/errorImage.jpg';
 			},
-			
+
 			/**
 			 * 分类楼层监听image加载完成
 			 * @param {Object} key
@@ -195,19 +198,23 @@
 			onFloorImageError(key, index, index2) {
 				this[key][index].MallGoodsList[index2].DefaultPicURL = '/static/errorImage.jpg';
 			},
-			
+
 			//轮播图切换修改背景色
 			swiperChange(e) {
 				const index = e.detail.current;
 				this.swiperCurrent = index;
 				this.titleNViewBackground = this.carouselList[index].background;
 			},
+			navToList(key){
+				uni.navigateTo({
+					url: `/pages/product/list?key=${key}`
+				})
+			},
 			//详情页
 			navToDetailPage(item) {
-				//测试数据没有写id，用title代替
-				let id = item.title;
+				//为了模拟数据，正常项目里按照业务传值
 				uni.navigateTo({
-					url: `/pages/product/detail?id=${id}`
+					url: `/pages/product/detail?goods=${this.$api.putExtra(item)}`
 				})
 			},
 		},
@@ -240,8 +247,6 @@
 </script>
 
 <style lang="scss">
-
-
 	page {
 		background: #f5f5f5;
 	}
@@ -398,6 +403,7 @@
 			color: $font-color-dark;
 			line-height: 1.8;
 			display: inline-block;
+
 			// image {
 			// 	width: 155upx;
 			// 	height: 155upx;
@@ -408,10 +414,12 @@
 				height: 155upx;
 				flex-shrink: 0;
 				position: relative;
+
 				image {
 					border-radius: 8upx;
 				}
 			}
+
 			.price {
 				color: $uni-color-primary;
 			}
@@ -467,15 +475,18 @@
 			color: $font-color-dark;
 			margin-top: 10rpx;
 		}
+
 		.subtitle {
 			font-size: $font-sm;
 			color: $font-color-light;
 			line-height: 2.4;
-		}	
+		}
+
 		.price {
 			color: $uni-color-primary;
 			font-size: $font-lg;
 		}
+
 		/* 猜你喜欢 */
 		.guess-section {
 			display: flex;
@@ -484,21 +495,25 @@
 			background: #fff;
 			margin-top: 40rpx;
 			padding: 0rpx 10rpx;
+
 			.guess-item {
 				display: flex;
 				flex-direction: column;
 				width: 33.3%;
 				padding-bottom: 40upx;
 			}
+
 			.image-wrapper {
 				width: 230upx;
 				height: 260upx;
 				flex-shrink: 0;
 				position: relative;
+
 				image {
 					border-radius: 8upx;
 				}
 			}
+
 			// image {
 			// 	width: 230upx;
 			// 	height: 260upx;
@@ -507,5 +522,4 @@
 			// }
 		}
 	}
-	
 </style>

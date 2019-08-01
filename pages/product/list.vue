@@ -45,7 +45,7 @@
 		</view>
 		<uni-load-more :status="loadingType"></uni-load-more>
 		<!-- 筛选面板 -->
-		<view class="cate-mask" :class="cateMaskState===0 ? 'none' : cateMaskState===1 ? 'show' : ''" @click="toggleCateMask('Cate','none')">
+		<view class="cate-mask" @touchmove.stop.prevent="stopPrevent" :class="cateMaskState===0 ? 'none' : cateMaskState===1 ? 'show' : ''" @click="toggleCateMask('Cate','none')">
 			<view class="cate-content" @click.stop.prevent="stopPrevent" @touchmove.stop.prevent="stopPrevent">
 				<scroll-view scroll-y class="cate-box">
 					<text class="title">价格区间</text>
@@ -165,7 +165,6 @@
 			this.loadCateList();
 		},
 		onNavigationBarSearchInputClicked: function(e) {
-			console.log("::::::" + this.searchKey)
 			let key = this.searchKey ? '?key=' + this.searchKey : '';
 			uni.redirectTo({
 				url: '../search/search' + key,
@@ -336,10 +335,9 @@
 			},
 			//详情
 			navToDetailPage(item) {
-				//测试数据没有写id，用title代替
-				let id = item.title;
+				//为了模拟数据，正常项目里按照业务传值
 				uni.navigateTo({
-					url: `/pages/product/detail?id=${id}`
+					url: `/pages/product/detail?goods=${this.$api.putExtra(item)}`
 				})
 			},
 			stopPrevent() {}

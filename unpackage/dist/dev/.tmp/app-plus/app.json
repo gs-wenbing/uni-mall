@@ -8,7 +8,12 @@
     "pages/product/list",
     "pages/product/detail",
     "pages/login/login",
+    "pages/order/placeOrder",
+    "pages/pay/pay",
+    "pages/pay/paySuccess",
     "pages/notice/notice",
+    "pages/address/address",
+    "pages/address/addressEdit",
     "pages/setting/setting"
   ],
   "window": {
