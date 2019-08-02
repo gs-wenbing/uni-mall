@@ -80,4 +80,47 @@ page {
   -webkit-box-shadow: 1px 2px 5px rgba(219, 63, 96, 0.4);
           box-shadow: 1px 2px 5px rgba(219, 63, 96, 0.4);
 }
+/* 地址选择面板 */
+.mask {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+  -webkit-align-items: flex-end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  position: fixed;
+  left: 0;
+  top: 0px;
+  bottom: 0;
+  width: 100%;
+  background: transparent;
+  z-index: 9995;
+  -webkit-transition: .3s;
+  -o-transition: .3s;
+  transition: .3s;
+}
+.mask .mask-content {
+    width: 100%;
+    height: 60vh;
+    background: #f3f3f3;
+    -webkit-transform: translateY(100%);
+        -ms-transform: translateY(100%);
+            transform: translateY(100%);
+    -webkit-transition: .3s;
+    -o-transition: .3s;
+    transition: .3s;
+}
+.mask.none {
+    display: none;
+}
+.mask.show {
+    background: rgba(0, 0, 0, 0.4);
+}
+.mask.show .mask-content {
+      -webkit-transform: translateY(0);
+          -ms-transform: translateY(0);
+              transform: translateY(0);
+}
 

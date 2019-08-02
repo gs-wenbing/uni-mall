@@ -96,6 +96,7 @@
 </template>
 
 <script>
+	import bmap  from "@/common/bmap-wx.js"
 	export default {
 
 		data() {
@@ -122,6 +123,30 @@
 		},
 
 		onLoad() {
+			var BMap = new bmap.BMapWX({ 
+				ak: 'i0BXsy4TnbXQ51USDMHdlhoOb2kgEmrz'
+			});
+			var webView = this.$mp.page.$getAppWebview();
+			var fail = function(data) { 
+				console.log(JSON.stringify(data)) 
+			}; 
+			var success = function(data) { 
+				console.log(JSON.stringify(data))
+				// #ifdef APP-PLUS  
+				// https://uniapp.dcloud.io/collocation/pages?id=app-titlenview-searchinput
+				// 动态修改原生导航栏: https://ask.dcloud.net.cn/article/35374
+				webView.setTitleNViewButtonStyle(0, {  
+					text: data.originalData.result.addressComponent.city,  
+				}); 
+				// #endif 
+			} 
+			// 发起regeocoding检索请求 
+			BMap.regeocoding({ 
+				address: "北京市海淀区上地十街10号", 
+				fail: fail, 
+				success: success 
+			}); 
+			 
 			this.getSeckillGoodsList();
 			this.loadData();
 		},
@@ -228,7 +253,7 @@
 		onNavigationBarButtonTap(e) {
 			const index = e.index;
 			if (index === 0) {
-				this.$api.msg('点击了扫描');
+				this.$api.msg('点击位置');
 			} else if (index === 1) {
 				// #ifdef APP-PLUS
 				const pages = getCurrentPages();

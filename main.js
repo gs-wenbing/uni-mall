@@ -5,6 +5,7 @@ import App from './App'
 // 管理账号信息
 const USERS_KEY = 'USERS_KEY';
 const STATE_KEY = 'STATE_KEY';
+const MAP_KEY = 'T2okmwOeQg5GvbXOpqiiG3PmDBpmTCG3';
 
 const API_URL = "https://mockapi.eolinker.com/p6QCAEw5a26610182ff15ddc6f4f212776fdfbb3ce18328/";
 
@@ -115,7 +116,8 @@ Vue.prototype.$api = {
 	prePage,
 	callApix,
 	putExtra,
-	getExtra
+	getExtra,
+	MAP_KEY
 };
 
 App.mpType = 'app'

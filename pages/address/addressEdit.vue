@@ -10,9 +10,10 @@
 		</view>
 		<view class="row b-b">
 			<text class="tit">地址</text>
-			<text class="input">
-				{{addressData.Address}}
-			</text>
+			<input @click="togglePopup('show')" class="input" disabled v-model="addressData.Address" placeholder="省市区县、乡镇等" placeholder-class="placeholder" />
+			<!-- <text class="input">
+				{{addressData.Address}}、
+			</text> -->
 			<text class="yticon icon-shouhuodizhi" @click="chooseLocation" ></text>
 		</view>
 		<view class="row b-b"> 
@@ -24,14 +25,31 @@
 			<text class="tit">设为默认</text>
 			<switch :checked="addressData.IsDefault==1" color="#fa436a" @change="switchChange" />
 		</view>
+		
 		<button class="add-btn" @click="confirm">提交</button>
+		
+		
+		<!-- 地址选择面板 -->
+		<view class="mask" @touchmove.stop.prevent="stopPrevent" :class="maskState===0 ? 'none' : maskState===1 ? 'show' : ''"
+		 @click="togglePopup">
+			<view class="mask-content" @click.stop.prevent="stopPrevent">
+				<city-selector @confirm="onCityClick" platform="jd"></city-selector>
+			</view>
+		</view>
+		
+		
 	</view>
 </template>
 
 <script>
+	import citySelector from "@/components/city-selector.vue"
 	export default {
+		components: {
+			citySelector
+		},
 		data() {
 			return {
+				maskState: 0, //地址选择面板
 				manageType:"",
 				addressData: {
 					AddressID:'',
@@ -58,12 +76,25 @@
 			switchChange(e){
 				this.addressData.IsDefault = e.detail.value?1:0;
 			},
+			//城市地址
+			onCityClick(e){
+				console.log(JSON.stringify(e))
+				this.addressData.Address = e.province.label+e.city.label+e.county.label;
+				this.togglePopup()
+			},
+			togglePopup(type){
+				let timer = type === 'show' ? 10 : 300;
+				let state = type === 'show' ? 1 : 0;
+				this.maskState = 2;
+				setTimeout(() => {
+					this.maskState = state;
+				}, timer)
+			},
 			
 			//地图选择地址
 			chooseLocation(){
 				uni.chooseLocation({
 					success: (data)=> {
-						console.log(JSON.stringify(data));
 						this.addressData.Address = data.name;
 					}
 				})
@@ -96,6 +127,7 @@
 					uni.navigateBack()
 				}, 800)
 			},
+			stopPrevent() {}
 		}
 	}
 </script>
@@ -151,5 +183,39 @@
 		background-color: $base-color;
 		border-radius: 10upx;
 		box-shadow: 1px 2px 5px rgba(219, 63, 96, 0.4);
+	}
+	
+	/* 地址选择面板 */
+	.mask {
+		display: flex;
+		align-items: flex-end;
+		position: fixed;
+		left: 0;
+		top: var(--window-top);
+		bottom: 0;
+		width: 100%;
+		background: rgba(0, 0, 0, 0);
+		z-index: 9995;
+		transition: .3s;
+	
+		.mask-content {
+			width: 100%;
+			height: 60vh;
+			background: #f3f3f3;
+			transform: translateY(100%);
+			transition: .3s;
+		}
+	
+		&.none {
+			display: none;
+		}
+	
+		&.show {
+			background: rgba(0, 0, 0, .4);
+	
+			.mask-content {
+				transform: translateY(0);
+			}
+		}
 	}
 </style>

@@ -24,21 +24,13 @@
 							"disabled": true,
 							"placeholderColor": "#606266"
 						},
-						"tags": [{
-							"type": "default",
-							"tag": "img",
-							"src": "/static/logo.jpg",
-							"position": {
-								"left": "10px",
-								"top": "7px",
-								"width": "75px",
-								"height": "30px"
-							}
-						}],
+
 						"buttons": [{
-								"width": "90px",
+								"text": "北京市",
+								"fontSize": "14",
+								"select": true,
 								"float": "left",
-								"color": "#fff",
+								"width": "75px",
 								"background": "rgba(0,0,0,0)"
 							},
 							{
@@ -178,12 +170,12 @@
 			"style": {
 				"navigationBarTitleText": "提交订单"
 			}
-		},{
+		}, {
 			"path": "pages/pay/pay",
 			"style": {
 				"navigationBarTitleText": "支付"
 			}
-		},{
+		}, {
 			"path": "pages/pay/paySuccess",
 			"style": {
 				"navigationBarTitleText": "支付成功"
