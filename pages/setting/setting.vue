@@ -2,33 +2,33 @@
 	<view class="container">
 		<view class="list-cell b-b m-t" @click="navTo('个人资料')" hover-class="cell-hover" :hover-stay-time="50">
 			<text class="cell-tit">个人资料</text>
-			<text class="cell-more yticon icon-you"></text>
+			<text class="cell-more mallicon icon-you"></text>
 		</view>
 		<view class="list-cell b-b" @click="navTo('/pages/address/address?AddressID=0')" hover-class="cell-hover" :hover-stay-time="50">
 			<text class="cell-tit">收货地址</text>
-			<text class="cell-more yticon icon-you"></text>
+			<text class="cell-more mallicon icon-you"></text>
 		</view>
 		<view class="list-cell" @click="navTo('修改密码')" hover-class="cell-hover" :hover-stay-time="50">
 			<text class="cell-tit">修改密码</text>
-			<text class="cell-more yticon icon-you"></text>
+			<text class="cell-more mallicon icon-you"></text>
 		</view>
 		
 		<view class="list-cell" @click="navTo('建议反馈')" hover-class="cell-hover" :hover-stay-time="50">
 			<text class="cell-tit">建议反馈</text>
-			<text class="cell-more yticon icon-you"></text>
+			<text class="cell-more mallicon icon-you"></text>
 		</view>
 		<view class="list-cell" @click="navTo('联系客服')" hover-class="cell-hover" :hover-stay-time="50">
 			<text class="cell-tit">联系客服</text>
-			<text class="cell-more yticon icon-you"></text>
+			<text class="cell-more mallicon icon-you"></text>
 		</view>
 		<view class="list-cell b-b" @click="navTo('关于我们')" hover-class="cell-hover" :hover-stay-time="50">
 			<text class="cell-tit">关于我们</text>
-			<text class="cell-more yticon icon-you"></text>
+			<text class="cell-more mallicon icon-you"></text>
 		</view>
 		<view class="list-cell">
 			<text class="cell-tit">检查更新</text>
 			<text class="cell-tip">当前版本 1.0.3</text>
-			<text class="cell-more yticon icon-you"></text>
+			<text class="cell-more mallicon icon-you"></text>
 		</view>
 		<view class="list-cell log-out-btn" @click="toLogout">
 			<text class="cell-tit">退出登录</text>

@@ -14,7 +14,7 @@
 			<!-- <text class="input">
 				{{addressData.Address}}、
 			</text> -->
-			<text class="yticon icon-shouhuodizhi" @click="chooseLocation" ></text>
+			<text class="mallicon icon-shouhuodizhi" @click="chooseLocation" ></text>
 		</view>
 		<view class="row b-b"> 
 			<text class="tit">门牌号</text>

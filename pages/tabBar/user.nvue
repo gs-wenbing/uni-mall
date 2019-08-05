@@ -1,0 +1,349 @@
+<template>
+	<div class="page">
+		<scroller>
+			<div class="user-section-bg"></div>
+			<div class="user-section">
+				<div class="user-info-box">
+					<div class="portrait-box">
+						<image class="portrait" :src="userInfo.HeadImageUrl || '/static/missing-face.png'"></image>
+					</div>
+					<div class="info-box">
+						<text class="username" @click="navToLogin">{{userInfo.UserName || '去登陆'}}</text>
+						<text class="department"  v-if="hasLogin">派送方：{{userInfo.DepartmentName}}</text>
+						<div class="tag-box" v-if="hasLogin">
+							<text class="tag-phone">销售经理：{{userInfo.Salesman}}</text>
+							<text class="tag-phone">上级领导：{{userInfo.Salessuper}}</text>
+						</div>
+					</div>
+				</div>
+				<div class="tj-sction"  v-if="hasLogin">
+					<div class="tj-item">
+						<text class="money">128.8</text>
+						<text class="money-title">余额</text>
+					</div>
+					<div class="tj-item">
+						<text class="money">10</text>
+						<text class="money-title">优惠券</text>
+					</div>
+				</div>
+			</div>
+			<div class="user-section-bottom-bg"></div>
+
+			<!-- 订单 -->
+			<div class="sec-header">
+				<text class="sec-header-t">我的订单</text>
+			</div>
+			<div class="order-section">
+				<div class="order-item">
+					<text class="mallicon" style='font-family:mallicon;'>&#xe626;</text>
+					<text class="order-icon-title">未付款</text>
+				</div>
+				<div class="order-item">
+					<text class="mallicon" style='font-family:mallicon;'>&#xe68f;</text>
+					<text class="order-icon-title">已受理</text>
+				</div>
+				<div class="order-item">
+					<text class="mallicon" style='font-family:mallicon;'>&#xe71a;</text>
+					<text class="order-icon-title">已发货</text>
+				</div>
+				<div class="order-item">
+					<text class="mallicon" style='font-family:mallicon;'>&#xe631;</text>
+					<text class="order-icon-title">退货/退款</text>
+				</div>
+			</div>
+
+			<!-- 我的工具 -->
+			<div class="sec-header" v-if="hasLogin">
+				<text class="sec-header-t">我的工具</text>
+			</div>
+			<div class="tools-section" v-if="hasLogin">
+				<div class="tools-item" v-for="(item,index) in toolItems" v-bind:key="index" hover-class="common-hover"
+				 :hover-stay-time="50">
+					<view class="item-img">
+						<image style="width: 60upx;height: 66upx;" :src="item.src"></image>
+					</view>
+					<text class="item-title">{{item.title}}</text>
+				</div>
+			</div>
+		</scroller>
+	</div>
+
+</template>
+<script>
+	export default {
+		data() {
+			return {
+				hasLogin:false,
+				userInfo: {},
+				toolItems: [{
+					src: "/static/user/bgblock_01.png",
+					title: "建议订单",
+				}, {
+					src: "/static/user/bgblock_02.png",
+					title: "销售订单",
+				}, {
+					src: "/static/user/bgblock_01.png",
+					title: "客户退单",
+				}, {
+					src: "/static/user/bgblock_03.png",
+					title: "库存管理",
+				}, {
+					src: "/static/user/bgblock_04.png",
+					title: "我的奖励",
+				}, {
+					src: "/static/user/bgblock_05.png",
+					title: "我的账单",
+				}, {
+					src: "/static/user/bgblock_06.png",
+					title: "被拜访记录",
+				}, {
+					src: "/static/user/bgblock_07.png",
+					title: "广告形象",
+				}, {
+					src: "/static/user/bgblock_08.png",
+					title: "合同管理",
+				}, {
+					src: "/static/user/bgblock_09.png",
+					title: "发票管理",
+				}, {
+					src: "/static/user/bgblock_10.png",
+					title: "客户商品管理",
+				}, {
+					src: "/static/user/bgblock_11.png",
+					title: "我的卡券",
+				}]
+
+			}
+		},
+		beforeCreate() {
+			// https://weex.apache.org/zh/docs/modules/dom.html#addrule
+			const domModule = weex.requireModule("dom");
+			domModule.addRule('fontFace', {
+				'fontFamily': 'mallicon',
+				'src': "url('https://at.alicdn.com/t/font_1078604_w4kpxh0rafi.ttf')"
+			})
+		},
+		created() {
+			let userInfo = uni.getStorageSync('userInfo') || '';
+			if(userInfo.UserAccountID){
+				this.userInfo = userInfo;
+				this.hasLogin = true;
+			}
+			uni.onNavigationBarButtonTap((e)=>{
+				uni.navigateTo({
+					url:'/pages/setting/setting'
+				})
+			})
+		},
+		methods:{
+			navToLogin(){
+				if (!this.hasLogin) {
+					uni.navigateTo({
+						url:'/pages/login/login'
+					})
+				}
+			},
+			/**
+			 * 统一跳转接口,拦截未登录路由
+			 * navigator标签现在默认没有转场动画，所以用view
+			 */
+			navTo(url) {
+				if (!this.hasLogin) {
+					url = '/pages/login/login';
+				}
+				uni.navigateTo({
+					url
+				})
+			},
+		}
+		
+	}
+</script>
+<style>
+	.mallicon {
+		font-size: 66upx;
+		margin-bottom: 10upx;
+		color: #8F9298;
+	}
+
+	.page {
+		width: 750upx;
+		flex: 1;
+		background-color: #f5f5f5;
+	}
+
+	.user-section-bg {
+		width: 750upx;
+		position: absolute;
+		height: 100upx;
+		background-color: #e9323d;
+		border-bottom-left-radius: 50%;
+		border-bottom-right-radius: 50%;
+	}
+
+	.user-section {
+		height: 360upx;
+		padding: 30upx 30upx 0;
+		margin: 0 30upx;
+		align-items: center;
+		position: relative;
+		background-color: #ffffff;
+		border-radius: 10upx;
+	}
+
+	.user-info-box {
+		height: 180upx;
+		flex-direction: row;
+		align-items: center;
+		position: relative;
+		z-index: 1;
+	}
+	.portrait-box{
+		width: 132upx;
+		height: 132upx;
+		border-radius: 76upx;
+		background-color: #F5F5F5;
+	}
+	.portrait {
+		width: 130upx;
+		height: 130upx;
+		border-radius: 75upx;
+	}
+
+	.info-box {
+		flex-direction: column;
+		justify-content: center;
+		width: 500upx;
+	}
+
+	.username {
+		font-size: 32upx;
+		color: #303133;
+		margin-left: 20upx;
+	}
+
+	.department {
+		font-size: 24upx;
+		color: #606266;
+		margin-left: 20upx;
+		margin-top: 30upx;
+	}
+
+	.tag-box {
+		flex-direction: row;
+		margin-top: 30upx;
+	}
+
+	.tag-phone {
+		font-size: 24upx;
+		color: #606266;
+		margin-left: 10upx;
+		margin-right: 20upx;
+		padding: 8upx 15upx;
+		text-align: center;
+		color: #fff;
+		border-radius: 20upx;
+		background-color: #F96D73;
+	}
+
+	.tj-sction {
+		flex-direction: row;
+		background-color: #fff;
+		border-radius: 10upx;
+		justify-content: space-between;
+		margin-top: 10upx;
+		padding: 0 60upx;
+		width: 690upx;
+	}
+
+	.tj-item {
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		height: 140upx;
+	}
+
+	.money {
+		font-size: 32upx;
+		color: #303133;
+		margin-bottom: 8upx;
+	}
+
+	.money-title {
+		font-size: 24upx;
+		color: #75787d;
+	}
+
+	.user-section-bottom-bg {
+		width: 690upx;
+		height: 10upx;
+		background-color: #e9323d;
+		border-bottom-left-radius: 10upx;
+		border-bottom-right-radius: 10upx;
+		margin-left: 30upx;
+	}
+
+	/* 我的订单 */
+	.sec-header {
+		flex-direction: row;
+		align-items: center;
+		background-color: #fff;
+		height: 80upx;
+		margin-top: 30upx;
+		padding: 0upx 30upx;
+	}
+
+	.sec-header-t {
+		font-size: 28upx;
+		color: #303133;
+	}
+
+	.order-section {
+		flex-direction: row;
+		justify-content: space-around;
+		background-color: #fff;
+		padding: 0upx 30upx 30upx 30upx;
+	}
+
+	.order-item {
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		width: 120upx;
+		height: 120upx;
+	}
+
+	.order-icon-title {
+		font-size: 24upx;
+		color: #303133;
+	}
+
+	/* 我的工具 */
+	.tools-section {
+		flex-direction: row;
+		background-color: #fff;
+		padding: 0upx 30upx 30upx 30upx;
+		width: 750upx;
+		flex-wrap: wrap;
+	}
+
+	.tools-item {
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		margin-bottom: 50upx;
+		width: 172upx;
+	}
+
+	.item-img {
+		height: 80upx;
+	}
+
+	.item-title {
+		font-size: 24upx;
+		color: #303133;
+		margin-top: 30upx;
+		width: 172upx;
+		text-align: center;
+	}
+</style>

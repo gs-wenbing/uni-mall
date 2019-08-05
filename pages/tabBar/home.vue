@@ -75,7 +75,7 @@
 				<view class="tit-box">
 					<text class="tit">{{mallGoods.GoodsClassName}}</text>
 				</view>
-				<text class="yticon icon-you"></text>
+				<text class="mallicon icon-you"></text>
 			</view>
 			<view class="class-floor">
 				<view class="guess-section">

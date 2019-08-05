@@ -4,28 +4,28 @@
 			<view class="nav-item" :class="{current: filterIndex === 0}" @click="tabClick(0)">
 				<text>销量</text>
 				<view class="p-box">
-					<text :class="{active: priceOrder === 1 && filterIndex === 2}" class="yticon icon-shang"></text>
-					<text :class="{active: priceOrder === 2 && filterIndex === 2}" class="yticon icon-shang xia"></text>
+					<text :class="{active: priceOrder === 1 && filterIndex === 2}" class="mallicon icon-shang"></text>
+					<text :class="{active: priceOrder === 2 && filterIndex === 2}" class="mallicon icon-shang xia"></text>
 				</view>
 			</view>
 			<view class="nav-item" :class="{current: filterIndex === 1}" @click="tabClick(1)">
 				<text>上市</text>
 				<view class="p-box">
-					<text :class="{active: priceOrder === 1 && filterIndex === 2}" class="yticon icon-shang"></text>
-					<text :class="{active: priceOrder === 2 && filterIndex === 2}" class="yticon icon-shang xia"></text>
+					<text :class="{active: priceOrder === 1 && filterIndex === 2}" class="mallicon icon-shang"></text>
+					<text :class="{active: priceOrder === 2 && filterIndex === 2}" class="mallicon icon-shang xia"></text>
 				</view>
 			</view>
 			<view class="nav-item" :class="{current: filterIndex === 2}" @click="tabClick(2)">
 				<text>价格</text>
 				<view class="p-box">
-					<text :class="{active: priceOrder === 1 && filterIndex === 2}" class="yticon icon-shang"></text>
-					<text :class="{active: priceOrder === 2 && filterIndex === 2}" class="yticon icon-shang xia"></text>
+					<text :class="{active: priceOrder === 1 && filterIndex === 2}" class="mallicon icon-shang"></text>
+					<text :class="{active: priceOrder === 2 && filterIndex === 2}" class="mallicon icon-shang xia"></text>
 				</view>
 			</view>
 			<view class="nav-item" :class="{current: filterIndex === 3}" @click="toggleCateMask('Cate','show')">
 				<text>筛选</text>
 				<view class="p-box">
-					<text class="yticon icon-shang"></text>
+					<text class="mallicon icon-shang"></text>
 				</view>
 			</view>
 		</view>
@@ -56,7 +56,7 @@
 					</view>
 					<view class="nav" @click="toggleCateMask('Brand','show')" hover-class="common-hover" :hover-stay-time="50">
 						<text class="subtitle">品牌</text>
-						<text class="yticon icon-you"></text>
+						<text class="mallicon icon-you"></text>
 					</view>
 					<text class="title">类型</text>
 					<view class="type-box">
@@ -68,7 +68,7 @@
 
 					<view class="nav" @click="toggleCateMask('Classy','show')" hover-class="common-hover" :hover-stay-time="50">
 						<text class="subtitle">分类</text>
-						<text class="yticon icon-you"></text>
+						<text class="mallicon icon-you"></text>
 					</view>
 				</scroll-view>
 				<view style="display: flex;flex-direction: row;justify-content: space-between;height: 110rpx;padding: 20rpx 40rpx;font-size: 30rpx;">
@@ -82,7 +82,7 @@
 		<view class="cate-mask" :class="BrandMaskState===0 ? 'none' : BrandMaskState===1 ? 'shows' : ''" @click="toggleCateMask('Brand','none')">
 			<view class="cate-content" @click.stop.prevent="stopPrevent" @touchmove.stop.prevent="stopPrevent">
 				<view class="t-box">
-					<text @click="closeCate(1)" class="t-b yticon icon-arrow-left-bottom"></text>
+					<text @click="closeCate(1)" class="t-b mallicon icon-arrow-left-bottom"></text>
 					<text class="t">品牌</text>
 					<text class="t-s">确定</text>
 				</view>
@@ -99,7 +99,7 @@
 		<view class="cate-mask" :class="ClassMaskState===0 ? 'none' : ClassMaskState===1 ? 'shows' : ''" @click="toggleCateMask('Classy','none')">
 			<view class="cate-content" @click.stop.prevent="stopPrevent" @touchmove.stop.prevent="stopPrevent">
 				<view class="t-box">
-					<text @click="closeCate(2)" class="t-b yticon icon-arrow-left-bottom"></text>
+					<text @click="closeCate(2)" class="t-b mallicon icon-arrow-left-bottom"></text>
 					<text class="t">分类</text>
 					<text class="t-s">确定</text>
 				</view>
@@ -385,7 +385,7 @@
 			display: flex;
 			flex-direction: column;
 
-			.yticon {
+			.mallicon {
 				display: flex;
 				align-items: center;
 				justify-content: center;

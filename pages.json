@@ -34,7 +34,7 @@
 								"background": "rgba(0,0,0,0)"
 							},
 							{
-								"fontSrc": "/static/yticon.ttf",
+								"fontSrc": "/static/mallicon.ttf",
 								"text": "\ue60d",
 								"fontSize": "26",
 								"color": "#ffffff",
@@ -52,7 +52,7 @@
 					"bounce": "none",
 					"titleNView": {
 						"buttons": [{
-							"fontSrc": "/static/yticon.ttf",
+							"fontSrc": "/static/mallicon.ttf",
 							"text": "\ue744",
 							"fontSize": "28",
 							"color": "#ffffff",
@@ -78,20 +78,12 @@
 					"bounce": "none",
 					"titleNView": {
 						"buttons": [{
-								"fontSrc": "/static/yticon.ttf",
+								"fontSrc": "/static/mallicon.ttf",
 								"text": "\ue60f",
 								"fontSize": "24",
 								"color": "#ffffff",
 								"width": "46px",
 								"background": "rgba(0,0,0,0)"
-							},
-							{
-								"fontSrc": "/static/yticon.ttf",
-								"text": "\ue744",
-								"fontSize": "28",
-								"color": "#ffffff",
-								"background": "rgba(0,0,0,0)",
-								"redDot": true
 							}
 						]
 					}
@@ -134,7 +126,7 @@
 							"placeholderColor": "#606266"
 						},
 						"buttons": [{
-							"fontSrc": "/static/yticon.ttf",
+							"fontSrc": "/static/mallicon.ttf",
 							"text": "\ue744",
 							"fontSize": "28",
 							"width": "50px",

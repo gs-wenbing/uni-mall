@@ -6,22 +6,14 @@
 		mapMutations
 	} from 'vuex';
 	export default {
+		globalData:{
+			
+		},
 		methods: {
 			...mapMutations(['login']),
-			async loadData() {
-				let result = await this.$api.callApix({
-					notLoading:true,
-					param:"",
-					action:"api/Mall/GetMallIndexViewDataTry"
-				});
-				if(result.IsSuccess){
-					this.$api.setStorage("classy", result.data.GoodsClassList);
-				}
-			}
 		},
 		onLaunch: function() {
 			plus.screen.lockOrientation('portrait-primary'); //锁定
-			// this.loadData();
 				
 			let userInfo = uni.getStorageSync('userInfo') || '';
 			if(userInfo.UserAccountID){
@@ -49,15 +41,16 @@
 	/*
 		全局公共样式和字体图标
 	*/
+   /* #ifndef APP-PLUS-NVUE */  
 	@font-face {
-		font-family: yticon;
+		font-family: mallicon;
 		font-weight: normal;
 		font-style: normal;
 		src: url('https://at.alicdn.com/t/font_1078604_w4kpxh0rafi.ttf') format('truetype');
 	}
 
-	.yticon {
-		font-family: "yticon" !important;
+	.mallicon {
+		font-family: "mallicon" !important;
 		font-size: 16px;
 		font-style: normal;
 		-webkit-font-smoothing: antialiased;
@@ -347,11 +340,11 @@
 	.icon-dianzan-ash:before {
 		content: "\e617";
 	}
+	 /* #endif */  
 
 
 
-
-
+	/* #ifndef APP-PLUS-NVUE */  
 	view,
 	scroll-view,
 	swiper,
@@ -381,18 +374,19 @@
 	image{
 		will-change: transform;
 	}
-	
+	 /* #endif */  
 	/* 骨架屏替代方案 */
 	.Skeleton {
-		background: #f3f3f3;
+		background-color: #f3f3f3;
 		padding: 20upx 0;
 		border-radius: 8upx;
 	}
 	
 	/* 图片载入替代方案 */
+	 /* #ifndef APP-PLUS-NVUE */  
 	.image-wrapper {
 		font-size: 0;
-		background: #f3f3f3;
+		background-color: #f3f3f3;
 		border-radius: 4px;
 
 		image {
@@ -406,16 +400,18 @@
 			}
 		}
 	}
-
+	 /* #endif */  
 	.clamp {
 		overflow: hidden;
 		text-overflow: ellipsis;
+		 /* #ifndef APP-PLUS-NVUE */  
 		white-space: nowrap;
 		display: block;
+    /* #endif */  
 	}
 
 	.common-hover {
-		background: #f5f5f5;
+		background-color: #f5f5f5;
 	}
 
 	/*边框*/
@@ -426,9 +422,14 @@
 		left: 0;
 		right: 0;
 		height: 0;
+		/* #ifndef APP-PLUS-NVUE */  
 		content: '';
+		/* #endif */  
 		transform: scaleY(.5);
-		border-bottom: 1px solid $border-color-base;
+		border-bottom-width: 1px;  
+		border-bottom-style: solid;  
+		border-bottom-color: #E4E7ED;  
+		/* border-bottom-: 1px solid $border-color-base; */
 	}
 
 	.b-b:after {
@@ -438,26 +439,27 @@
 	.b-t:after {
 		top: 0;
 	}
-
+	
 	/* button样式改写 */
+	/* #ifndef APP-PLUS-NVUE */  
 	uni-button,
 	button {
 		height: 80upx;
 		line-height: 80upx;
-		font-size: $font-lg + 2upx;
+		font-size: 30upx;
 		font-weight: normal;
 
 		&.no-border:before,
 		&.no-border:after {
-			border: 0;
+			border-width: 0px;  
 		}
 	}
 
 	uni-button[type=default],
 	button[type=default] {
-		color: $font-color-dark;
+		color: #303133;
 	}
-
+	/* #endif */  
 	/* input 样式 */
 	.input-placeholder {
 		color: #999999;

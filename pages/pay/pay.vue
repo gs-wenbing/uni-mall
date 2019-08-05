@@ -8,7 +8,7 @@
 		<view class="pay-type-list">
 
 			<view class="type-item b-b" @click="changePayType(1)">
-				<!-- <text class="icon yticon icon-weixinzhifu"></text> -->
+				<!-- <text class="icon mallicon icon-weixinzhifu"></text> -->
 				<image src="/static/user/icon-weixinpay.png"></image>
 				<view class="con">
 					<text class="tit">微信支付</text>
@@ -20,7 +20,7 @@
 				</label>
 			</view>
 			<view class="type-item b-b" @click="changePayType(2)">
-				<!-- <text class="icon yticon icon-alipay"></text> -->
+				<!-- <text class="icon mallicon icon-alipay"></text> -->
 				<image src="/static/user/icon-zhifubaopay.png"></image>
 				<view class="con">
 					<text class="tit">支付宝支付</text>
@@ -31,7 +31,7 @@
 				</label>
 			</view>
 			<view class="type-item" @click="changePayType(3)">
-				<!-- <text class="icon yticon icon-erjiye-yucunkuan"></text> -->
+				<!-- <text class="icon mallicon icon-erjiye-yucunkuan"></text> -->
 				<image src="/static/user/icon-yuepay.png"></image>
 				<view class="con">
 					<text class="tit">预存款支付</text>

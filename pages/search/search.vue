@@ -2,7 +2,7 @@
 	<view class="box-padding">
 		<view class="f-header m-t">
 			<text class="tit">搜索历史</text>
-			<text class="yticon icon-fork"></text>
+			<text class="mallicon icon-fork"></text>
 		</view>
 		<view class="tag-section">
 			<text @click="navTo('搜索历历史')">
@@ -11,7 +11,7 @@
 		</view>
 		<view class="f-header m-t">
 			<text class="tit">搜索发现</text>
-			<text class="yticon icon-dizhi"></text>
+			<text class="mallicon icon-dizhi"></text>
 		</view>
 		<view class="tag-section">
 			<text @click="navTo(tag.tagName)" v-for="(tag, index) in tagList" :key="index" >

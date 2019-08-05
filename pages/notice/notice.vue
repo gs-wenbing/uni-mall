@@ -12,7 +12,7 @@
 				</text>
 				<view class="bot b-t">
 					<text>查看详情</text>
-					<text class="more-icon yticon icon-you"></text>
+					<text class="more-icon mallicon icon-you"></text>
 				</view>
 			</view>
 		</view>
@@ -28,7 +28,7 @@
 				</view>
 				<view class="bot b-t">
 					<text>查看详情</text>
-					<text class="more-icon yticon icon-you"></text>
+					<text class="more-icon mallicon icon-you"></text>
 				</view>
 			</view>
 		</view>
@@ -45,7 +45,7 @@
 				<text class="introduce">新品上市全场2折起，新品上市全场2折起，新品上市全场2折起，新品上市全场2折起，新品上市全场2折起</text>
 				<view class="bot b-t">
 					<text>查看详情</text>
-					<text class="more-icon yticon icon-you"></text>
+					<text class="more-icon mallicon icon-you"></text>
 				</view>
 			</view>
 		</view>

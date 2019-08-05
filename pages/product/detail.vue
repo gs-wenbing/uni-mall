@@ -82,7 +82,7 @@
 				<text class="tit">评价</text>
 				<text>(86)</text>
 				<text class="tip">好评率 100%</text>
-				<text class="yticon icon-you"></text>
+				<text class="mallicon icon-you"></text>
 			</view>
 			<view class="eva-box">
 				<image class="portrait" src="http://img3.imgtn.bdimg.com/it/u=1150341365,1327279810&fm=26&gp=0.jpg" mode="aspectFill"></image>
@@ -107,16 +107,16 @@
 		<!-- 底部操作菜单 -->
 		<view class="page-bottom">
 			<navigator url="/pages/tabBar/home" open-type="switchTab" class="p-b-btn">
-				<text class="yticon icon-xiatubiao--copy"></text>
+				<text class="mallicon icon-xiatubiao--copy"></text>
 				<text>首页</text>
 			</navigator>
 			<navigator url="/pages/tabBar/cart" open-type="switchTab" class="p-b-btn">
 				<text class="num" v-if="cartNum">{{cartNum}}</text>
-				<text class="yticon icon-gouwuche" :class="{gouwuche:cartNum>0}"></text>
+				<text class="mallicon icon-gouwuche" :class="{gouwuche:cartNum>0}"></text>
 				<text>购物车</text>
 			</navigator>
 			<view class="p-b-btn" :class="{active: favorite}" @click="toFavorite">
-				<text class="yticon icon-shoucang"></text>
+				<text class="mallicon icon-shoucang"></text>
 				<text>收藏</text>
 			</view>
 
@@ -605,14 +605,14 @@
 				border-radius: 50%;
 			}
 
-			.yticon {
+			.mallicon {
 				font-size: 40upx;
 				line-height: 48upx;
 				color: $font-color-light;
 			}
 
 			&.active,
-			&.active .yticon {
+			&.active .mallicon {
 				color: $uni-color-primary;
 			}
 

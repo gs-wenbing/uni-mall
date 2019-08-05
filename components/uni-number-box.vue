@@ -1,11 +1,11 @@
 <template>
 	<view class="uni-numbox">
 		<view class="uni-numbox-minus" @click="_calcValue('subtract')">
-			<text class="yticon icon--jianhao" :class="minDisabled?'uni-numbox-disabled': ''"></text>
+			<text class="mallicon icon--jianhao" :class="minDisabled?'uni-numbox-disabled': ''"></text>
 		</view>
 		<input class="uni-numbox-value" type="number" :disabled="disabled" :value="inputValue" @blur="_onBlur">
 		<view class="uni-numbox-plus" @click="_calcValue('add')">
-			<text class="yticon icon-jia2" :class="maxDisabled?'uni-numbox-disabled': ''"></text>
+			<text class="mallicon icon-jia2" :class="maxDisabled?'uni-numbox-disabled': ''"></text>
 		</view>
 	</view>
 </template>
@@ -156,8 +156,8 @@
 		position: relative;
 	}
 
-	.uni-numbox-minus .yticon,
-	.uni-numbox-plus .yticon {
+	.uni-numbox-minus .malliconon,
+	.uni-numbox-plus .malliconon {
 		font-size: 36upx;
 		color: #555;
 	}
@@ -184,7 +184,7 @@
 		font-size: 30upx;
 	}
 
-	.uni-numbox-disabled.yticon {
+	.uni-numbox-disabled.malliconon {
 		color: #d6d6d6;
 	}
 </style>

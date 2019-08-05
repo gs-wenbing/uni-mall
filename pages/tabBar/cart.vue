@@ -20,7 +20,7 @@
 						<view class="image-wrapper">
 							<image :src="item.DefaultPicURL" :class="[item.loaded]" mode="aspectFill" lazy-load @load="onImageLoad('cartList', index)"
 							 @error="onImageError('cartList', index)"></image>
-							<view class="yticon icon-xuanzhong2 checkbox" :class="{checked: item.checked}" @click="check('item', index)"></view>
+							<view class="mallicon icon-xuanzhong2 checkbox" :class="{checked: item.checked}" @click="check('item', index)"></view>
 						</view>
 						<view class="item-right">
 							<text class="clamp title">{{item.GoodsName}}</text>

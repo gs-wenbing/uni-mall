@@ -1,7 +1,7 @@
 <template>
 	<view class="content b-t">
 		<view class="list b-b" v-for="(item, index) in addressList" :key="index" @click="checkAddress(item)">
-			<view v-if="AddressID == item.AddressID" class="yticon icon-xuanzhong2 checkbox checked"></view>
+			<view v-if="AddressID == item.AddressID" class="mallicon icon-xuanzhong2 checkbox checked"></view>
 			<view class="wrapper">
 				<view class="u-box">
 					<text class="name">{{item.RecieveName}}</text>
@@ -12,7 +12,7 @@
 					<text class="address">{{item.Address}} {{item.AddressDetail}}</text>
 				</view>
 			</view>
-			<text class="yticon icon-bianji" @click.stop="addAddress('edit', item)"></text>
+			<text class="mallicon icon-bianji" @click.stop="addAddress('edit', item)"></text>
 		</view>
 		
 		<button class="add-btn" @click="addAddress('add')">新增地址</button>

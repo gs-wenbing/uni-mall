@@ -35,19 +35,19 @@
 				</view>
 				<view class="order-section">
 					<view class="order-item" @click="navTo('/pages/order/order?state=0')" hover-class="common-hover" :hover-stay-time="50">
-						<text class="yticon icon-shouye"></text>
+						<text class="mallicon icon-shouye"></text>
 						<text>未付款</text>
 					</view>
 					<view class="order-item" @click="navTo('/pages/order/order?state=1')" hover-class="common-hover" :hover-stay-time="50">
-						<text class="yticon icon-daifukuan"></text>
+						<text class="mallicon icon-daifukuan"></text>
 						<text>已受理</text>
 					</view>
 					<view class="order-item" @click="navTo('/pages/order/order?state=2')" hover-class="common-hover" :hover-stay-time="50">
-						<text class="yticon icon-yishouhuo"></text>
+						<text class="mallicon icon-yishouhuo"></text>
 						<text>已发货</text>
 					</view>
 					<view class="order-item" @click="navTo('/pages/order/order?state=4')" hover-class="common-hover" :hover-stay-time="50">
-						<text class="yticon icon-shouhoutuikuan"></text>
+						<text class="mallicon icon-shouhoutuikuan"></text>
 						<text>退货/退款</text>
 					</view>
 				</view>
@@ -156,7 +156,9 @@
 		onNavigationBarButtonTap(e) {
 			const index = e.index;
 			if (index === 0) {
-				this.navTo('/pages/setting/setting');
+				uni.navigateTo({
+					url:'/pages/setting/setting'
+				})
 			} else if (index === 1) {
 				// #ifdef APP-PLUS
 				const pages = getCurrentPages();
@@ -345,7 +347,7 @@
 			color: $font-color-dark;
 		}
 
-		.yticon {
+		.mallicon {
 			font-size: 66upx;
 			margin-bottom: 10upx;
 			color: #8F9298;
@@ -403,19 +405,6 @@
 			.sec-header-t {
 				font-size: $font-lg;
 				color: $font-color-dark;
-			}
-		}
-
-		.h-list {
-			white-space: nowrap;
-			padding: 30upx 30upx 0;
-
-			image {
-				display: inline-block;
-				width: 160upx;
-				height: 160upx;
-				margin-right: 20upx;
-				border-radius: 10upx;
 			}
 		}
 	}
