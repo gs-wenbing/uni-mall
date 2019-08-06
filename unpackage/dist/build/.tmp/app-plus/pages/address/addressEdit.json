@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "编辑收货地址",
+  "usingComponents": {
+    "city-selector": "/components/city-selector"
+  }
+}

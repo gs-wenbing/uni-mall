@@ -53,13 +53,14 @@
 			analysisData(classList){
 				this.currentId = classList[0].GoodsClassID;
 				classList.forEach(item=>{
-					if(item.children && item.IsVisible==0){
+					//  && item.IsVisible==0
+					if(item.children){
 						this.fatherlist.push(item);
 						this.sonlist.push(item);
 						item.children.forEach(child=>{
-							if (child.IsVisible==0) {
+							// if (child.IsVisible==0) {
 								this.tlist.push(child);
-							}
+							// }
 						}) 
 					}
 				})

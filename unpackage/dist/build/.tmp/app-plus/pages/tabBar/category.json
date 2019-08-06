@@ -1,0 +1,17 @@
+{
+  "navigationBarTitleText": "分类",
+  "bounce": "none",
+  "titleNView": {
+    "buttons": [
+      {
+        "fontSrc": "/static/mallicon.ttf",
+        "text": "",
+        "fontSize": "28",
+        "color": "#ffffff",
+        "background": "rgba(0,0,0,0)",
+        "redDot": true
+      }
+    ]
+  },
+  "usingComponents": {}
+}

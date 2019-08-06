@@ -1,0 +1,64 @@
+@charset "UTF-8";
+/* 页面左右间距 */
+/* 文字尺寸 */
+/*文字颜色*/
+/* 边框颜色 */
+/* 图片加载中颜色 */
+/* 行为相关颜色 */
+.box-padding {
+  width: 750rpx;
+  padding: 0 30rpx;
+  margin-top: 30rpx;
+}
+.f-header {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 15rpx 0;
+  width: 690rpx;
+}
+.f-header .tit {
+    font-size: 28rpx;
+    color: #303133;
+    font-weight: 700;
+    line-height: 1.3;
+}
+.f-header .icon-dizhi {
+    font-size: 34rpx;
+    color: #909399;
+}
+.tag-section {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 26rpx;
+  color: #606266;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+  width: 690rpx;
+}
+.tag-section text {
+    background-color: #F1F1F1;
+    border: 1px solid #E0E0E0;
+    border-radius: 50rpx;
+    margin: 15rpx;
+    padding: 12rpx 18rpx;
+    min-width: 142rpx;
+    text-align: center;
+}
+

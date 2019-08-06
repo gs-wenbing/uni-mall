@@ -1,9 +1,7 @@
 {
   "pages": [
     "pages/tabBar/home",
-    "pages/tabBar/category",
     "pages/tabBar/cart",
-    "pages/tabBar/user",
     "pages/search/search",
     "pages/product/list",
     "pages/product/detail",
@@ -54,7 +52,49 @@
       }
     ]
   },
-  "nvueCompiler": "weex",
+  "nvue": {
+    "pages": {
+      "pages/tabBar/user.html": {
+        "window": {
+          "usingComponents": {},
+          "navigationBarTitleText": "我的",
+          "bounce": "none",
+          "titleNView": {
+            "buttons": [
+              {
+                "fontSrc": "/static/mallicon.ttf",
+                "text": "",
+                "fontSize": "24",
+                "color": "#ffffff",
+                "width": "46px",
+                "background": "rgba(0,0,0,0)"
+              }
+            ]
+          }
+        }
+      },
+      "pages/tabBar/category.html": {
+        "window": {
+          "usingComponents": {},
+          "navigationBarTitleText": "分类",
+          "bounce": "none",
+          "titleNView": {
+            "buttons": [
+              {
+                "fontSrc": "/static/mallicon.ttf",
+                "text": "",
+                "fontSize": "28",
+                "color": "#ffffff",
+                "background": "rgba(0,0,0,0)",
+                "redDot": true
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "nvueCompiler": "uni-app",
   "splashscreen": {
     "alwaysShowBeforeRender": true,
     "autoclose": false
