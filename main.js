@@ -97,7 +97,7 @@ const callApix = params => {
 		callApi(params,resolve)
 	})
 }
-
+//获取上一页实例，可直接调用上页所有数据和方法
 const prePage = () => {
 	let pages = getCurrentPages();
 	let prePage = pages[pages.length - 2];
@@ -105,6 +105,13 @@ const prePage = () => {
 	return prePage;
 	// #endif
 	return prePage.$vm;
+}
+
+const prePageWebview = () => {
+	let pages = getCurrentPages();
+	let prePage = pages[pages.length - 2];
+	var currentWebview = prePage.$getAppWebview();
+	return currentWebview;
 }
 
 

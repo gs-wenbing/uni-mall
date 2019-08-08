@@ -31,8 +31,8 @@
 	text-align: center;
 	position: relative;
 }
-.uni-numbox-minus .malliconon,
-.uni-numbox-plus .malliconon {
+.uni-numbox-minus .mallicon,
+.uni-numbox-plus .mallicon {
 	font-size: 36rpx;
 	color: #555;
 }

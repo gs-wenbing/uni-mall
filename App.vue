@@ -7,7 +7,7 @@
 	} from 'vuex';
 	export default {
 		globalData:{
-			
+			text: 'text'  
 		},
 		methods: {
 			...mapMutations(['login']),

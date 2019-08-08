@@ -1,7 +1,6 @@
 {
   "pages": [
     "pages/tabBar/home",
-    "pages/tabBar/cart",
     "pages/search/search",
     "pages/product/list",
     "pages/product/detail",
@@ -71,6 +70,12 @@
               }
             ]
           }
+        }
+      },
+      "pages/tabBar/cart.html": {
+        "window": {
+          "usingComponents": {},
+          "navigationBarTitleText": "购物车"
         }
       },
       "pages/tabBar/category.html": {

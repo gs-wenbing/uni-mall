@@ -1,5 +1,6 @@
 <template>
 	<div class="page" >
+		<!-- https://weex.apache.org/zh/docs/components/list.html#%E7%AE%80%E4%BB%8B -->
 		<list class="left" @scroll="scroll" offset-accuracy=100 show-scrollbar=false>
 			<cell v-for="(category,index) in categoryList" :key="index" :ref="'tab' + index">
 				<div class="left-panel" :class="[index == currentIndex ? 'left-panel-active' : '']" @click="goToCategory($event, 'category' + index, index)">
@@ -65,6 +66,7 @@
 			onImageError(key, index, i) {
 				this[key][index].children[i].PicURL = '/static/errorImage.jpg';
 			},
+			//https://weex.apache.org/zh/docs/events/common-events.html#appear
 			goToCategory(event, refId, index) {
 				if(this.currentIndex==index){return ;}
 				clearTimeout(this.timer);

@@ -70,6 +70,7 @@
 
 </template>
 <script>
+	const globalEvent = weex.requireModule('globalEvent');
 	export default {
 		data() {
 			return {
@@ -115,6 +116,7 @@
 
 			}
 		},
+		
 		beforeCreate() {
 			// https://weex.apache.org/zh/docs/modules/dom.html#addrule
 			const domModule = weex.requireModule("dom");
@@ -124,18 +126,32 @@
 			})
 		},
 		created() {
-			let userInfo = uni.getStorageSync('userInfo') || '';
-			if(userInfo.UserAccountID){
-				this.userInfo = userInfo;
-				this.hasLogin = true;
-			}
+			// this.refrashUserInfo();
 			uni.onNavigationBarButtonTap((e)=>{
 				uni.navigateTo({
 					url:'/pages/setting/setting'
 				})
 			})
+			
+			globalEvent.addEventListener("plusMessage", e => {
+                console.log(e.data);
+            });
+		},
+		onShow() {
+			console.log(getApp().globalData.text);
+			this.refrashUserInfo();
 		},
 		methods:{
+			refrashUserInfo(){
+				let userInfo = uni.getStorageSync('userInfo') || '';
+				if(userInfo.UserAccountID){
+					this.userInfo = userInfo;
+					this.hasLogin = true;
+				}else{
+					this.userInfo = {};
+					this.hasLogin = false;
+				}
+			},
 			navToLogin(){
 				if (!this.hasLogin) {
 					uni.navigateTo({
