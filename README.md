@@ -3,14 +3,14 @@
 
 
 <br>部分示例图片<br>
-<img src="https://github.com/gs-wenbing/mui-mall/blob/master/screenshot/screenshot1.jpg" width="375" alt="示例1" />
-<img src="https://github.com/gs-wenbing/mui-mall/blob/master/screenshot/screenshot2.jpg" width="375" alt="示例2" />
-<img src="https://github.com/gs-wenbing/mui-mall/blob/master/screenshot/screenshot3.jpg" width="375" alt="示例3" />
-<img src="https://github.com/gs-wenbing/mui-mall/blob/master/screenshot/screenshot4.jpg" width="375" alt="示例4" />
-<img src="https://github.com/gs-wenbing/mui-mall/blob/master/screenshot/screenshot5.jpg" width="375" alt="示例5" />
-<img src="https://github.com/gs-wenbing/mui-mall/blob/master/screenshot/screenshot6.jpg" width="375" alt="示例6" />
-<img src="https://github.com/gs-wenbing/mui-mall/blob/master/screenshot/screenshot7.jpg" width="375" alt="示例7" />
-<img src="https://github.com/gs-wenbing/mui-mall/blob/master/screenshot/screenshot8.jpg" width="375" alt="示例8" />
+<img src="https://github.com/gs-wenbing/uni-mall/blob/master/screenshot/screenshot1.jpg" width="375" alt="示例1" />
+<img src="https://github.com/gs-wenbing/uni-mall/blob/master/screenshot/screenshot2.jpg" width="375" alt="示例2" />
+<img src="https://github.com/gs-wenbing/uni-mall/blob/master/screenshot/screenshot3.jpg" width="375" alt="示例3" />
+<img src="https://github.com/gs-wenbing/uni-mall/blob/master/screenshot/screenshot4.jpg" width="375" alt="示例4" />
+<img src="https://github.com/gs-wenbing/uni-mall/blob/master/screenshot/screenshot5.jpg" width="375" alt="示例5" />
+<img src="https://github.com/gs-wenbing/uni-mall/blob/master/screenshot/screenshot6.jpg" width="375" alt="示例6" />
+<img src="https://github.com/gs-wenbing/uni-mall/blob/master/screenshot/screenshot7.jpg" width="375" alt="示例7" />
+<img src="https://github.com/gs-wenbing/uni-mall/blob/master/screenshot/screenshot8.jpg" width="375" alt="示例8" />
 
 参考模板：https://ext.dcloud.net.cn/plugin?id=200<br>
 该项目的数据和图片来自网络，均只用于案例展示，请勿用于其他用途。<br>
