@@ -1,0 +1,387 @@
+<template>
+	<div class="container">
+		<!-- 空白页 -->
+		<div v-if="!hasLogin || empty===true" class="empty">
+			<image class="empty-image" src="/static/state-cartempty.jpg"></image>
+			<text class="empty-tips" >购物车空空如也</text>
+			<text class="nav-to" v-if="hasLogin" @click="navToHome">随便逛逛</text>
+			<text class="nav-to" v-else @click="navToLogin">去登陆</text>
+		</div>
+		<div v-else >
+			<list class="cart-list">
+				<cell v-for="(item,index) in cartList" :key="index" >
+					<div class="cart-item">
+						<div class="image-wrapper">
+							<image class="item-image" :src="item.DefaultPicURL"></image>
+							<text class="checkbox" style='font-family:mallicon;' :class="{'checked': item.checked}" @click="check('item', index)">&#xe62f;</text>
+						</div>
+						<div class="item-right">
+							<text class="item-name">{{item.GoodsName}}</text>
+							<div class="attr-box">
+								<text class="attr-text">{{item.GoodsModel}}</text>
+								<text class="attr-text">{{item.GoodsAttrVal}}</text>
+							</div>
+							<div class="price-box">
+								<text class="price-text">¥ {{item.Price}} </text>
+								<div class="uni-numbox">
+									<div class="uni-numbox-minus">
+										<text class="mallicon" style='font-family:mallicon;'>&#xe60b;</text>
+									</div>
+									<input class="uni-numbox-value" v-model="item.CartNum" type="number">
+									<div class="uni-numbox-plus">
+										<text class="mallicon" style='font-family:mallicon;'>&#xe60a;</text>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</cell>
+			</list>
+			<!-- 底部菜单栏 -->
+			<div class="action-section">
+				<div class="checkbox-all-box">
+					<text class="checkbox" style='font-family:mallicon;' :class="{'checked': allChecked}" @click="check('all')">&#xe62f;</text>
+					<text class="selected-all-btn" @click="check('all')">全选</text>
+					<text class="price-all">合计：¥ {{total}}</text>
+				</div>
+				<text class="confirm-btn" @click="createOrder">去结算</text>
+			</div>
+		</div>
+	</div>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				hasLogin: true,
+				total: 0, //总价格
+				allChecked: false, //全选状态  true|false
+				empty: false, //空白页现实  true|false
+				cartList: [],
+			};
+		},
+		beforeCreate() {
+			// https://weex.apache.org/zh/docs/modules/dom.html#addrule
+			const domModule = weex.requireModule("dom");
+			domModule.addRule('fontFace', {
+				'fontFamily': 'mallicon',
+				'src': "url('https://at.alicdn.com/t/font_1078604_w4kpxh0rafi.ttf')"
+			})
+		},
+		created() {
+			uni.request({  
+				url: 'https://mockapi.eolinker.com/p6QCAEw5a26610182ff15ddc6f4f212776fdfbb3ce18328/home/getCartList',
+				method:"GET",  
+				success: (res)=> { 
+					if(res.statusCode == 200 && res.data.result==0){
+						this.cartList = res.data.data;
+					}
+				}  
+			}); 
+		},
+		methods: {
+			navToLogin() {
+				uni.navigateTo({
+					url: '/pages/login/login'
+				})
+			},
+			//选中状态处理
+			check(type, index) {
+				if (type === 'item') {
+					this.cartList[index].checked = !this.cartList[index].checked;
+				} else {
+					const checked = !this.allChecked
+					const list = this.cartList;
+					list.forEach(item => {
+						item.checked = checked;
+					})
+					this.allChecked = checked;
+				}
+				this.calcTotal(type);
+			},
+			//数量
+			numberChange(data) {
+				this.cartList[data.index].CartNum = data.CartNum;
+				this.calcTotal();
+			},
+			//删除
+			deleteCartItem(index) {
+				let list = this.cartList;
+				let row = list[index];
+				let GoodsID = row.GoodsID;
+			
+				this.cartList.splice(index, 1);
+				this.calcTotal();
+				uni.hideLoading();
+			},
+			//清空
+			clearCart() {
+				uni.showModal({
+					content: '清空购物车？',
+					success: (e) => {
+						if (e.confirm) {
+							this.cartList = [];
+						}
+					}
+				})
+			},
+			//计算总价
+			calcTotal() {
+				let list = this.cartList;
+				if (list.length === 0) {
+					this.empty = true;
+					return;
+				}
+				let total = 0;
+				let checked = true;
+				list.forEach(item => {
+					if (item.checked === true) {
+						total += Number(item.Price) * Number(item.CartNum);
+					} else if (checked === true) {
+						checked = false;
+					}
+				})
+				this.allChecked = checked;
+				this.total = Number(total.toFixed(2));
+			},
+			//创建订单
+			createOrder() {
+				let list = this.cartList;
+				let goodsData = [];
+				list.forEach(item => {
+					if (item.checked) {
+						goodsData.push(item);
+					}
+				})
+				uni.navigateTo({
+					url: `/pages/order/placeOrder`
+				})
+			}
+			
+		}
+	}
+</script>
+
+<style>
+	.container{
+		position: absolute;
+		width: 750uupx;
+		top: 0;
+		bottom: 0;
+		background-color: #f2f2f2;
+	}
+	/* 空白页 */
+	.empty {
+		position: fixed;
+		left: 0;
+		top: 0;
+		bottom: 0;
+		width: 750upx;
+		justify-content: center;
+		flex-direction: column;
+		align-items: center;
+		background-color: #F5F5F5;
+	}
+
+	.empty-image {
+		width: 430upx;
+		height: 430upx;
+		margin-bottom: 30upx;
+	}
+
+	.empty-tips {
+		font-size: 32upx;
+		font-weight: 600;
+		color: #E60012;
+	}
+
+	.nav-to {
+		color: #fff;
+		font-size: 26upx;
+		background-color: #E60012;
+		margin-top: 40upx;
+		width: 160upx;
+		height: 60upx;
+		line-height: 60upx;
+		text-align: center;
+		border-radius: 50upx;
+	}
+	
+	/* 购物车列表项 */
+	.cart-list{
+		padding-bottom: 100upx;
+	}
+	.cart-item {
+		flex-direction: row;
+		padding: 15px 30upx;
+		position: relative;
+		background-color: #fff;
+		margin-bottom: 1px;
+	}
+	
+	.image-wrapper {
+		width: 220upx;
+		height: 220upx;
+		padding-left: 10upx;
+		padding-top: 10upx;
+	}
+	
+	.item-image {
+		width: 220upx;
+		height: 220upx;
+		border-radius: 8upx;
+	}
+	.checkbox {
+		position: absolute;
+		left: -5upx;
+		top: -5upx;
+		z-index: 10;
+		font-size: 44upx;
+		padding: 4upx;
+		color: #C0C4CC;
+		background-color: #fff;
+		border-radius: 50px;
+	}
+	.checked{
+		color: #E60012;
+	}
+	.item-right {
+		flex-direction: column;
+		padding-left: 30upx;
+		width: 470upx;
+		height: 220upx;
+		position:relative;
+	}
+	
+	.item-name,
+	.price-text {
+		font-size: 30upx;
+		color: #303133;
+		line-height: 50upx;
+		lines:3;
+	}
+	.attr-box{
+		flex-direction: row;
+	}
+	.attr-text {
+		font-size: 26upx;
+		line-height: 50upx;
+		color: #909399;
+		margin-right: 20upx;
+	}
+	.price-box {
+		position:absolute;
+		bottom:0upx;
+		flex-direction: row;
+		align-items: center;
+		justify-content:space-between;
+		padding-right: 30upx;
+		width: 440upx;
+	}
+	
+	/* 加减 */
+	.uni-numbox {
+		/* position: absolute; */
+		left: 30upx;
+		flex-direction: row;
+		justify-content: flex-start;
+		align-items: center;
+		width: 230upx;
+		height: 70upx;
+		background-color: #fff;
+		border-width: 1upx;  
+		border-style: solid;  
+		border-color: #F0F0F0;  
+		border-radius: 10upx;
+	}
+	
+	.uni-numbox-minus,
+	.uni-numbox-plus {
+		margin: 0;
+		background-color: #f5f5f5;
+		width: 70upx;
+		height: 70upx;
+		line-height: 70upx;
+		align-items: center;
+		justify-content:center;
+		position: relative;
+	}
+	
+	.mallicon {
+		font-size: 36upx;
+		color: #555;
+	}
+	
+	.uni-numbox-minus {
+		border-top-left-radius: 6upx;
+		border-bottom-left-radius: 6upx;
+	}
+	
+	.uni-numbox-plus {
+		border-top-right-radius: 6upx;
+		border-bottom-right-radius: 6upx;
+	}
+	
+	.uni-numbox-value {
+		position: relative;
+		background-color: #fff;
+		width: 90upx;
+		height: 50upx;
+		text-align: center;
+		padding: 0;
+		font-size: 30upx;
+	}
+	/* 底部栏 */
+	.action-section {
+		position: fixed;
+		bottom: 0upx;
+		z-index: 95;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+		width: 750upx;
+		height: 100upx;
+		background-color: rgba(255, 255, 255, 0.9);
+		box-shadow: 0 0 10upx 0 rgba(0, 0, 0, 0.2);
+	}
+	
+	.checkbox-all-box {
+		margin-left:30upx;
+		height: 42upx;
+		position: relative;
+		flex-direction: row;
+	}
+	
+	.selected-all-btn {
+		/* position: absolute; */
+		margin-left: 60upx;
+		z-index: 4;
+		height: 42upx;
+		line-height: 42upx;
+		font-size: 32upx;
+		color: #303133;
+		width: 120upx;
+	}
+	
+	.price-all {
+		font-size: 32upx;
+		color: #303133;
+		margin-left: 20upx;
+	}	
+	.confirm-btn {
+		border-radius: 100upx;
+		width: 200upx;
+		height: 64upx;
+		line-height: 64upx;
+		margin-right: 30upx;
+		text-align: center;
+		font-size: 28upx;
+		color: #fff;
+		background-color: #E60012;
+		box-shadow: 1px 2px 5px rgba(217, 60, 93, 0.72)
+	}
+	/* .uni-numbox-disabled.malliconon {
+		color: #d6d6d6;
+	} */
+</style>
