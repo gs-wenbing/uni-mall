@@ -117,7 +117,7 @@ new Vue(_pages_tabBar_user_nvue_mpType_page__WEBPACK_IMPORTED_MODULE_0__["defaul
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _user_nvue_vue_type_template_id_75c78758_mpType_page__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./user.nvue?vue&type=template&id=75c78758&mpType=page */ 2);
+/* harmony import */ var _user_nvue_vue_type_template_id_614ca3ee_mpType_page__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./user.nvue?vue&type=template&id=614ca3ee&mpType=page */ 2);
 /* harmony import */ var _user_nvue_vue_type_script_lang_js_mpType_page__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./user.nvue?vue&type=script&lang=js&mpType=page */ 4);
 /* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _user_nvue_vue_type_script_lang_js_mpType_page__WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _user_nvue_vue_type_script_lang_js_mpType_page__WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
 /* harmony import */ var _HBuilderX_1_4_1_20181228_full_HBuilderX_plugins_uniapp_cli_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../HBuilderX.1.4.1.20181228.full/HBuilderX/plugins/uniapp-cli/node_modules/vue-loader/lib/runtime/componentNormalizer.js */ 9);
@@ -144,8 +144,8 @@ if(this.__merge_style){
 
 var component = Object(_HBuilderX_1_4_1_20181228_full_HBuilderX_plugins_uniapp_cli_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
   _user_nvue_vue_type_script_lang_js_mpType_page__WEBPACK_IMPORTED_MODULE_1__["default"],
-  _user_nvue_vue_type_template_id_75c78758_mpType_page__WEBPACK_IMPORTED_MODULE_0__["render"],
-  _user_nvue_vue_type_template_id_75c78758_mpType_page__WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _user_nvue_vue_type_template_id_614ca3ee_mpType_page__WEBPACK_IMPORTED_MODULE_0__["render"],
+  _user_nvue_vue_type_template_id_614ca3ee_mpType_page__WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   injectStyles,
   null,
@@ -158,24 +158,24 @@ var component = Object(_HBuilderX_1_4_1_20181228_full_HBuilderX_plugins_uniapp_c
 /***/ }),
 /* 2 */
 /*!*****************************************************************************************************!*\
-  !*** E:/HBuilderProjects/uni-mall/pages/tabBar/user.nvue?vue&type=template&id=75c78758&mpType=page ***!
+  !*** E:/HBuilderProjects/uni-mall/pages/tabBar/user.nvue?vue&type=template&id=614ca3ee&mpType=page ***!
   \*****************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _HBuilderX_1_4_1_20181228_full_HBuilderX_plugins_uniapp_cli_node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_HBuilderX_1_4_1_20181228_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_hbuilderx_packages_webpack_uni_nvue_loader_lib_template_js_HBuilderX_1_4_1_20181228_full_HBuilderX_plugins_uniapp_cli_node_modules_vue_loader_lib_index_js_ref_4_0_user_nvue_vue_type_template_id_75c78758_mpType_page__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../HBuilderX.1.4.1.20181228.full/HBuilderX/plugins/uniapp-cli/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../HBuilderX.1.4.1.20181228.full/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-hbuilderx/packages/webpack-uni-nvue-loader/lib/template.js!../../../../HBuilderX.1.4.1.20181228.full/HBuilderX/plugins/uniapp-cli/node_modules/vue-loader/lib??ref--4-0!./user.nvue?vue&type=template&id=75c78758&mpType=page */ 3);
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _HBuilderX_1_4_1_20181228_full_HBuilderX_plugins_uniapp_cli_node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_HBuilderX_1_4_1_20181228_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_hbuilderx_packages_webpack_uni_nvue_loader_lib_template_js_HBuilderX_1_4_1_20181228_full_HBuilderX_plugins_uniapp_cli_node_modules_vue_loader_lib_index_js_ref_4_0_user_nvue_vue_type_template_id_75c78758_mpType_page__WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _HBuilderX_1_4_1_20181228_full_HBuilderX_plugins_uniapp_cli_node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_HBuilderX_1_4_1_20181228_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_hbuilderx_packages_webpack_uni_nvue_loader_lib_template_js_HBuilderX_1_4_1_20181228_full_HBuilderX_plugins_uniapp_cli_node_modules_vue_loader_lib_index_js_ref_4_0_user_nvue_vue_type_template_id_614ca3ee_mpType_page__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../HBuilderX.1.4.1.20181228.full/HBuilderX/plugins/uniapp-cli/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../HBuilderX.1.4.1.20181228.full/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-hbuilderx/packages/webpack-uni-nvue-loader/lib/template.js!../../../../HBuilderX.1.4.1.20181228.full/HBuilderX/plugins/uniapp-cli/node_modules/vue-loader/lib??ref--4-0!./user.nvue?vue&type=template&id=614ca3ee&mpType=page */ 3);
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _HBuilderX_1_4_1_20181228_full_HBuilderX_plugins_uniapp_cli_node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_HBuilderX_1_4_1_20181228_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_hbuilderx_packages_webpack_uni_nvue_loader_lib_template_js_HBuilderX_1_4_1_20181228_full_HBuilderX_plugins_uniapp_cli_node_modules_vue_loader_lib_index_js_ref_4_0_user_nvue_vue_type_template_id_614ca3ee_mpType_page__WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _HBuilderX_1_4_1_20181228_full_HBuilderX_plugins_uniapp_cli_node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_HBuilderX_1_4_1_20181228_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_hbuilderx_packages_webpack_uni_nvue_loader_lib_template_js_HBuilderX_1_4_1_20181228_full_HBuilderX_plugins_uniapp_cli_node_modules_vue_loader_lib_index_js_ref_4_0_user_nvue_vue_type_template_id_75c78758_mpType_page__WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _HBuilderX_1_4_1_20181228_full_HBuilderX_plugins_uniapp_cli_node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_HBuilderX_1_4_1_20181228_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_hbuilderx_packages_webpack_uni_nvue_loader_lib_template_js_HBuilderX_1_4_1_20181228_full_HBuilderX_plugins_uniapp_cli_node_modules_vue_loader_lib_index_js_ref_4_0_user_nvue_vue_type_template_id_614ca3ee_mpType_page__WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
 /***/ }),
 /* 3 */
 /*!****************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@dcloudio/vue-cli-plugin-hbuilderx/packages/webpack-uni-nvue-loader/lib/template.js!./node_modules/vue-loader/lib??ref--4-0!E:/HBuilderProjects/uni-mall/pages/tabBar/user.nvue?vue&type=template&id=75c78758&mpType=page ***!
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@dcloudio/vue-cli-plugin-hbuilderx/packages/webpack-uni-nvue-loader/lib/template.js!./node_modules/vue-loader/lib??ref--4-0!E:/HBuilderProjects/uni-mall/pages/tabBar/user.nvue?vue&type=template&id=614ca3ee&mpType=page ***!
   \****************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -290,6 +290,7 @@ exports.default = void 0;
 //
 //
 //
+var globalEvent = weex.requireModule('globalEvent');
 var _default = {
   data: function data() {
     return {
@@ -335,6 +336,7 @@ var _default = {
     };
   },
   beforeCreate: function beforeCreate() {
+    // https://weex.apache.org/zh/docs/modules/dom.html#addrule
     var domModule = weex.requireModule("dom");
     domModule.addRule('fontFace', {
       'fontFamily': 'mallicon',
@@ -342,23 +344,32 @@ var _default = {
     });
   },
   created: function created() {
-    var userInfo = uni.getStorageSync('userInfo') || '';
-
-    if (userInfo.UserAccountID) {
-      this.userInfo = userInfo;
-      this.hasLogin = true;
-    }
-
+    // this.refrashUserInfo();
     uni.onNavigationBarButtonTap(function (e) {
       uni.navigateTo({
         url: '/pages/setting/setting'
       });
     });
+    globalEvent.addEventListener("plusMessage", function (e) {
+      console.log(e.data, " at pages\\tabBar\\user.nvue:137");
+    });
   },
-  beforeUpdate: function beforeUpdate() {
-    console.log(111111111111, " at pages\\tabBar\\user.nvue:138");
+  onShow: function onShow() {
+    console.log(getApp().globalData.text, " at pages\\tabBar\\user.nvue:141");
+    this.refrashUserInfo();
   },
   methods: {
+    refrashUserInfo: function refrashUserInfo() {
+      var userInfo = uni.getStorageSync('userInfo') || '';
+
+      if (userInfo.UserAccountID) {
+        this.userInfo = userInfo;
+        this.hasLogin = true;
+      } else {
+        this.userInfo = {};
+        this.hasLogin = false;
+      }
+    },
     navToLogin: function navToLogin() {
       if (!this.hasLogin) {
         uni.navigateTo({

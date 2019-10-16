@@ -1,8 +1,6 @@
 {
   "pages": [
     "pages/tabBar/home",
-    "pages/tabBar/category",
-    "pages/tabBar/cart",
     "pages/search/search",
     "pages/product/list",
     "pages/product/detail",
@@ -69,6 +67,31 @@
                 "color": "#ffffff",
                 "width": "46px",
                 "background": "rgba(0,0,0,0)"
+              }
+            ]
+          }
+        }
+      },
+      "pages/tabBar/cart.html": {
+        "window": {
+          "usingComponents": {},
+          "navigationBarTitleText": "购物车"
+        }
+      },
+      "pages/tabBar/category.html": {
+        "window": {
+          "usingComponents": {},
+          "navigationBarTitleText": "分类",
+          "bounce": "none",
+          "titleNView": {
+            "buttons": [
+              {
+                "fontSrc": "/static/mallicon.ttf",
+                "text": "",
+                "fontSize": "28",
+                "color": "#ffffff",
+                "background": "rgba(0,0,0,0)",
+                "redDot": true
               }
             ]
           }

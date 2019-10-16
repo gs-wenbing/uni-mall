@@ -3,7 +3,6 @@
 		<image src="/static/state-paysuccess.jpg" mode="aspectFit"></image>
 		<text class="tit">支付成功</text>
 		<text class="tit-c">恭喜您支付成功</text>
-		<text class="tit-c">感谢你对品牌联盟的支持！</text>
 		
 		<view class="btn-group">
 			<navigator url="/pages/order/order?state=0" open-type="redirect" class="mix-btn">查看订单</navigator>

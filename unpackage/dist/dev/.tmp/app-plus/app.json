@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/tabBar/home",
+    "pages/tabBar/cart",
     "pages/search/search",
     "pages/product/list",
     "pages/product/detail",
@@ -53,31 +54,6 @@
   },
   "nvue": {
     "pages": {
-      "pages/tabBar/user.html": {
-        "window": {
-          "usingComponents": {},
-          "navigationBarTitleText": "我的",
-          "bounce": "none",
-          "titleNView": {
-            "buttons": [
-              {
-                "fontSrc": "/static/mallicon.ttf",
-                "text": "",
-                "fontSize": "24",
-                "color": "#ffffff",
-                "width": "46px",
-                "background": "rgba(0,0,0,0)"
-              }
-            ]
-          }
-        }
-      },
-      "pages/tabBar/cart.html": {
-        "window": {
-          "usingComponents": {},
-          "navigationBarTitleText": "购物车"
-        }
-      },
       "pages/tabBar/category.html": {
         "window": {
           "usingComponents": {},
@@ -95,16 +71,38 @@
               }
             ]
           }
-        }
+        },
+        "nvue": true
+      },
+      "pages/tabBar/user.html": {
+        "window": {
+          "usingComponents": {},
+          "navigationBarTitleText": "我的",
+          "bounce": "none",
+          "titleNView": {
+            "buttons": [
+              {
+                "fontSrc": "/static/mallicon.ttf",
+                "text": "",
+                "fontSize": "24",
+                "color": "#ffffff",
+                "width": "46px",
+                "background": "rgba(0,0,0,0)"
+              }
+            ]
+          }
+        },
+        "nvue": true
       }
     }
   },
   "nvueCompiler": "uni-app",
+  "renderer": "auto",
   "splashscreen": {
     "alwaysShowBeforeRender": true,
     "autoclose": false
   },
   "appname": "uniMall",
-  "compilerVersion": "2.1.3",
+  "compilerVersion": "2.3.3",
   "usingComponents": {}
 }
