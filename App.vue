@@ -13,7 +13,9 @@
 			...mapMutations(['login']),
 		},
 		onLaunch: function() {
+			// #ifdef APP-PLUS
 			plus.screen.lockOrientation('portrait-primary'); //锁定
+			// #endif
 				
 			let userInfo = uni.getStorageSync('userInfo') || '';
 			if(userInfo.UserAccountID){
