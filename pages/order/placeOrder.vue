@@ -127,7 +127,7 @@
 		},
 		
 		onLoad(option) {
-			
+			this.loadData();
 			//商品数据,正在项目里是从服务器获取
 			this.transGoodsList = this.$api.getExtra(option.data);
 			let total = 0;
@@ -138,7 +138,7 @@
 			this.totalMoney = Number(total.toFixed(2));
 			this.couponMoney = (this.totalMoney * 0.1).toFixed(2);
 			console.log(this.transGoodsList)
-			this.loadData();
+			
 		},
 		methods: {
 			async loadData() {
