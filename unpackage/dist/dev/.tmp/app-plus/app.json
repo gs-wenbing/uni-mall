@@ -1,7 +1,6 @@
 {
   "pages": [
     "pages/tabBar/home",
-    "pages/tabBar/cart",
     "pages/search/search",
     "pages/product/list",
     "pages/product/detail",
@@ -12,7 +11,8 @@
     "pages/notice/notice",
     "pages/address/address",
     "pages/address/addressEdit",
-    "pages/setting/setting"
+    "pages/setting/setting",
+    "pages/setting/about"
   ],
   "window": {
     "navigationBarTextStyle": "white",
@@ -74,6 +74,13 @@
         },
         "nvue": true
       },
+      "pages/tabBar/cart.html": {
+        "window": {
+          "usingComponents": {},
+          "navigationBarTitleText": "购物车"
+        },
+        "nvue": true
+      },
       "pages/tabBar/user.html": {
         "window": {
           "usingComponents": {},
@@ -103,6 +110,6 @@
     "autoclose": false
   },
   "appname": "uniMall",
-  "compilerVersion": "2.3.3",
+  "compilerVersion": "2.4.2",
   "usingComponents": {}
 }

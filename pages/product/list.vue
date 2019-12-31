@@ -246,6 +246,7 @@
 			},
 			//筛选点击
 			tabClick(index) {
+				this.MallGoodsList = [];
 				if (this.filterIndex === index && index !== 2) {
 					return;
 				}

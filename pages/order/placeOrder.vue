@@ -125,6 +125,7 @@
 				transGoodsList: []
 			}
 		},
+		
 		onLoad(option) {
 			
 			//商品数据,正在项目里是从服务器获取

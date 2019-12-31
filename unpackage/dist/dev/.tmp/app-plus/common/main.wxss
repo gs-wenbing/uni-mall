@@ -6,8 +6,8 @@
 /* 图片加载中颜色 */
 /* 行为相关颜色 */
 /*
-		全局公共样式和字体图标
-	*/
+	全局公共样式和字体图标
+*/
 @font-face {
   font-family: mallicon;
   font-weight: normal;
