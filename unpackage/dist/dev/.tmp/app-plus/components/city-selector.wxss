@@ -8,12 +8,10 @@
 .city-selector {
   display: -webkit-box;
   display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   -webkit-flex-direction: column;
-      -ms-flex-direction: column;
           flex-direction: column;
   font-size: 28rpx;
   background-color: #fff;
@@ -21,23 +19,19 @@
 .flex-row {
   display: -webkit-box;
   display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
   -webkit-flex-direction: row;
-      -ms-flex-direction: row;
           flex-direction: row;
   -webkit-align-content: center;
-      -ms-flex-line-pack: center;
           align-content: center;
 }
 .pad-left {
   padding-left: 40rpx;
 }
 .has-choose-box {
-  -webkit-box-shadow: 0 3rpx 3rpx #f1f1f1;
-          box-shadow: 0 3rpx 3rpx #f1f1f1;
+  box-shadow: 0 3rpx 3rpx #f1f1f1;
 }
 .has-choose {
   margin-right: 50rpx;
@@ -60,7 +54,6 @@
 .city-item view {
   -webkit-box-pack: center;
   -webkit-justify-content: center;
-      -ms-flex-pack: center;
           justify-content: center;
 }
 .city-item.active {

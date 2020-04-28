@@ -74,23 +74,20 @@
 				uni.navigateBack();
 			},
 			toRegist(){
-				this.$api.msg('去注册');
+				this.$utils.showMsg('去注册');
 			},
-			async toLogin(){
+			toLogin(){
 				this.logining = true;
-				
-				const result = await this.$api.callApix({
-					param:"",
-					action:"login/login"
-				});
-				
-				if(result.IsSuccess){
-					this.login(result.data);
-                    uni.navigateBack();  
-				}else{
-					this.$api.msg(result.msg);
+				this.$Request.get(this.$api.login.login).then(res => {
+					this.login(res.data);
+					uni.navigateBack();  
+				},err => {
+					console.log("err: " + JSON.stringify(err));
+					uni.showToast({
+						title: res.msg
+					});
 					this.logining = false;
-				}
+				});
 			}
 		},
 

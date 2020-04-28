@@ -61,16 +61,7 @@
 				    success: (e)=>{
 				    	if(e.confirm){
 				    		this.logout();
-							// let pages = getCurrentPages();
-							// let prePage = pages[pages.length - 2];
-							// var currentWebview = prePage.$getAppWebview();
-							// plus.webview.postMessageToUniNView({
-							// 	refrash: true
-							// }, currentWebview.id);
-							this.$api.prePage().refrashUserInfo();
-				    		setTimeout(()=>{
-				    			uni.navigateBack();
-				    		}, 200)
+							this.$utils.prePage();
 				    	}
 				    }
 				});

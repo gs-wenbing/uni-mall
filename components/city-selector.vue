@@ -21,7 +21,7 @@
 </template>
 
 <script>
-	import cityData from '../common/city.data.js';
+	import cityData from '../lib/city.data.js';
 	export default {
 		name: 'city-selector',
 		data() {

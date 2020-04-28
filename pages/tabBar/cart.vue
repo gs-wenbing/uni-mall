@@ -73,7 +73,9 @@
 			};
 		},
 		onLoad() {
-			this.loadData();
+			if(this.hasLogin){
+				this.loadData();
+			}
 		},
 		watch: {
 			//显示空白页
@@ -81,6 +83,11 @@
 				let empty = e.length === 0 ? true : false;
 				if (this.empty !== empty) {
 					this.empty = empty;
+				}
+			},
+			hasLogin(e){
+				if(this.hasLogin){
+					this.loadData() ;
 				}
 			}
 		},
@@ -99,21 +106,17 @@
 		},
 		methods: {
 			//请求数据
-			async loadData() {
-				let result = await this.$api.callApix({
-					param:"",
-					action:"home/getCartList"
-				});
-				let cartList = [];
-				if(result.IsSuccess){
-					cartList = result.data.map(item => {
+			loadData() {
+				this.$Request.get(this.$api.home.getCartList).then(res => {
+					let cartList = res.data.map(item => {
 						item.checked = true;
 						return item;
 					});
-				}
-				
-				this.cartList = cartList;
-				this.calcTotal(); //计算总价
+					this.cartList = cartList;
+					this.calcTotal(); //计算总价
+				},err => {
+					console.log("err: " + JSON.stringify(err));
+				});
 			},
 			//监听image加载完成
 			onImageLoad(key, index) {
@@ -198,7 +201,7 @@
 				})
 				//为了模拟数据，正常项目里按照业务传值
 				uni.navigateTo({
-					url: `/pages/order/placeOrder?data=${this.$api.putExtra(goodsData)}`
+					url: `/pages/order/placeOrder?data=${this.$utils.putExtra(goodsData)}`
 				})
 			}
 		}

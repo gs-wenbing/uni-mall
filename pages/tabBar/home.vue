@@ -96,7 +96,7 @@
 </template>
 
 <script>
-	import bmap  from "@/common/bmap-wx.js"
+	import bmap  from "@/lib/bmap-wx.js"
 	export default {
 
 		data() {
@@ -158,35 +158,29 @@
 			this.loadData("refrash");
 		},
 		methods: {
-			async getSeckillGoodsList(type) {
-				let result = await this.$api.callApix({
-					param: "",
-					action: "home/getSeckillGoodsList",
-					notLoading: true
+			getSeckillGoodsList(type) {
+				this.$Request.get(this.$api.home.SeckillGoods).then(res => {
+					this.seckillGoodsList = res.data;
+					if (type == "refrash") {
+						uni.stopPullDownRefresh();
+					}
+				},err => {
+					console.log("err: " + JSON.stringify(err));
 				});
-				if (result.IsSuccess) {
-					this.seckillGoodsList = result.data;
-				}
-				if (type == "refrash") {
-					uni.stopPullDownRefresh();
-				}
 			},
-			async loadData(type) {
+			loadData(type) {
 				let notLoading = false;
 				if (type == "refrash") {
 					notLoading = true;
 				}
-				let result = await this.$api.callApix({
-					param: "",
-					action: "home/getMallGoodsByClass",
-					notLoading: notLoading
+				this.$Request.get(this.$api.home.MallGoodsByClass).then(res => {
+					this.mallGoodsList = res.data;
+					if (type == "refrash") {
+						uni.stopPullDownRefresh();
+					}
+				},err => {
+					console.log("err: " + JSON.stringify(err));
 				});
-				if (result.IsSuccess) {
-					this.mallGoodsList = result.data;
-				}
-				if (type == "refrash") {
-					uni.stopPullDownRefresh();
-				}
 			},
 			/**
 			 * 爆款监听image加载完成
@@ -239,7 +233,7 @@
 			navToDetailPage(item) {
 				//为了模拟数据，正常项目里按照业务传值
 				uni.navigateTo({
-					url: `/pages/product/detail?goods=${this.$api.putExtra(item)}`
+					url: `/pages/product/detail?goods=${this.$utils.putExtra(item)}`
 				})
 			},
 		},
@@ -253,7 +247,7 @@
 		onNavigationBarButtonTap(e) {
 			const index = e.index;
 			if (index === 0) {
-				this.$api.msg('点击位置');
+				this.$utils.showMsg('点击位置');
 			} else if (index === 1) {
 				// #ifdef APP-PLUS
 				const pages = getCurrentPages();

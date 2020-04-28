@@ -129,7 +129,7 @@
 		onLoad(option) {
 			this.loadData();
 			//商品数据,正在项目里是从服务器获取
-			this.transGoodsList = this.$api.getExtra(option.data);
+			this.transGoodsList = this.$utils.getExtra(option.data);
 			let total = 0;
 			this.transGoodsList.forEach(Goods => {
 				Goods.loaded = '';
@@ -141,29 +141,23 @@
 			
 		},
 		methods: {
-			async loadData() {
-				let result = await this.$api.callApix({
-					param: "",
-					action: "address/getAddressList",
-					notLoading: true
-				});
-				if (result.IsSuccess) {
-					this.addressData = result.data[0];
-					result.data.forEach(address => {
+			loadData() {
+				this.$Request.get(this.$api.user.getAddressList).then(res => {
+					this.addressData = res.data[0];
+					res.data.forEach(address => {
 						if (address.IsDefault == 1) {
 							this.addressData = address;
 						}
 					})
-				}
-
-				let result2 = await this.$api.callApix({
-					param: "",
-					action: "coupon/getCouponList",
-					notLoading: true
+				},err => {
+					console.log("err: " + JSON.stringify(err));
 				});
-				if (result2.IsSuccess) {
-					this.couponList = result2.data;
-				}
+
+				this.$Request.get(this.$api.user.getCouponList).then(res => {
+					this.couponList = res.data;
+				},err => {
+					console.log("err: " + JSON.stringify(err));
+				});
 			},
 			//显示优惠券面板
 			toggleMask(type) {

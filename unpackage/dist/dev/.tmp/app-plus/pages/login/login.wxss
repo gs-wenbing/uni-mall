@@ -52,7 +52,6 @@ page {
 }
 .right-top-sign:before {
     -webkit-transform: rotate(50deg);
-        -ms-transform: rotate(50deg);
             transform: rotate(50deg);
     border-radius: 0 50px 0 0;
 }
@@ -61,7 +60,6 @@ page {
     right: -198rpx;
     top: 0;
     -webkit-transform: rotate(-50deg);
-        -ms-transform: rotate(-50deg);
             transform: rotate(-50deg);
     border-radius: 50px 0 0 0;
     /* background: pink; */
@@ -88,20 +86,16 @@ page {
 .input-item {
   display: -webkit-box;
   display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   -webkit-flex-direction: column;
-      -ms-flex-direction: column;
           flex-direction: column;
   -webkit-box-align: start;
   -webkit-align-items: flex-start;
-      -ms-flex-align: start;
           align-items: flex-start;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
-      -ms-flex-pack: center;
           justify-content: center;
   padding: 0 30rpx;
   background: #f8f6fc;

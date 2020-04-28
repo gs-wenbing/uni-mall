@@ -32,6 +32,7 @@
 
 <script>
 	const dom = weex.requireModule('dom') || {};
+	
 	export default {
 		data() {
 			return {
@@ -41,6 +42,11 @@
 			}
 		},
 		created() {
+			// this.$Request.get(this.$api.home.getGoodsClass).then(res => {
+			// 	this.categoryList = res.data.data;
+			// },err => {
+			// 	console.log("err: " + JSON.stringify(err));
+			// });
 			uni.request({  
 				url: 'https://mockapi.eolinker.com/p6QCAEw5a26610182ff15ddc6f4f212776fdfbb3ce18328/home/getGoodsClass',
 				method:"GET",  

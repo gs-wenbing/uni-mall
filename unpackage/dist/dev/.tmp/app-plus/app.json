@@ -1,6 +1,8 @@
 {
   "pages": [
     "pages/tabBar/home",
+    "pages/tabBar/cart",
+    "pages/tabBar/user",
     "pages/search/search",
     "pages/product/list",
     "pages/product/detail",
@@ -11,8 +13,7 @@
     "pages/notice/notice",
     "pages/address/address",
     "pages/address/addressEdit",
-    "pages/setting/setting",
-    "pages/setting/about"
+    "pages/setting/setting"
   ],
   "window": {
     "navigationBarTextStyle": "white",
@@ -73,33 +74,6 @@
           }
         },
         "nvue": true
-      },
-      "pages/tabBar/cart.html": {
-        "window": {
-          "usingComponents": {},
-          "navigationBarTitleText": "购物车"
-        },
-        "nvue": true
-      },
-      "pages/tabBar/user.html": {
-        "window": {
-          "usingComponents": {},
-          "navigationBarTitleText": "我的",
-          "bounce": "none",
-          "titleNView": {
-            "buttons": [
-              {
-                "fontSrc": "/static/mallicon.ttf",
-                "text": "",
-                "fontSize": "24",
-                "color": "#ffffff",
-                "width": "46px",
-                "background": "rgba(0,0,0,0)"
-              }
-            ]
-          }
-        },
-        "nvue": true
       }
     }
   },
@@ -110,6 +84,6 @@
     "autoclose": false
   },
   "appname": "uniMall",
-  "compilerVersion": "2.4.2",
+  "compilerVersion": "2.6.5",
   "usingComponents": {}
 }

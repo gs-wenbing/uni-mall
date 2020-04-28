@@ -134,7 +134,7 @@
       }
     },
     "uni-app": {
-      "compilerVersion": "2.4.2",
+      "compilerVersion": "2.6.5",
       "control": "v8",
       "nvueCompiler": "uni-app",
       "renderer": "auto",
@@ -179,5 +179,6 @@
       ],
       "selected": 0
     }
-  }
+  },
+  "usingComponents": {}
 }

@@ -15,34 +15,28 @@ page,
 .navbar {
   position: fixed;
   left: 0;
-  top: 0px;
+  top: var(--window-top);
   display: -webkit-box;
   display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   width: 100%;
   height: 80rpx;
   background: #fff;
-  -webkit-box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.06);
-          box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.06);
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.06);
   z-index: 10;
 }
 .navbar .nav-item {
     -webkit-box-flex: 1;
     -webkit-flex: 1;
-        -ms-flex: 1;
             flex: 1;
     display: -webkit-box;
     display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
     -webkit-box-pack: center;
     -webkit-justify-content: center;
-        -ms-flex-pack: center;
             justify-content: center;
     -webkit-box-align: center;
     -webkit-align-items: center;
-        -ms-flex-align: center;
             align-items: center;
     height: 100%;
     font-size: 30rpx;
@@ -55,26 +49,21 @@ page,
 .navbar .p-box {
     display: -webkit-box;
     display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
     -webkit-flex-direction: column;
-        -ms-flex-direction: column;
             flex-direction: column;
 }
 .navbar .p-box .mallicon {
       display: -webkit-box;
       display: -webkit-flex;
-      display: -ms-flexbox;
       display: flex;
       -webkit-box-align: center;
       -webkit-align-items: center;
-          -ms-flex-align: center;
               align-items: center;
       -webkit-box-pack: center;
       -webkit-justify-content: center;
-          -ms-flex-pack: center;
               justify-content: center;
       width: 30rpx;
       height: 14rpx;
@@ -88,21 +77,17 @@ page,
 }
 .navbar .p-box .xia {
       -webkit-transform: scaleY(-1);
-          -ms-transform: scaleY(-1);
               transform: scaleY(-1);
 }
 .navbar .cate-item {
     display: -webkit-box;
     display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
     -webkit-box-pack: center;
     -webkit-justify-content: center;
-        -ms-flex-pack: center;
             justify-content: center;
     -webkit-box-align: center;
     -webkit-align-items: center;
-        -ms-flex-align: center;
             align-items: center;
     height: 100%;
     width: 80rpx;
@@ -113,13 +98,12 @@ page,
 .cate-mask {
   position: fixed;
   left: 0;
-  top: 0px;
+  top: var(--window-top);
   bottom: 0;
   width: 100%;
   background: transparent;
   z-index: 95;
   -webkit-transition: .3s;
-  -o-transition: .3s;
   transition: .3s;
 }
 .cate-mask .cate-content {
@@ -128,29 +112,23 @@ page,
     background: #fff;
     float: right;
     -webkit-transform: translateX(100%);
-        -ms-transform: translateX(100%);
             transform: translateX(100%);
     -webkit-transition: .3s;
-    -o-transition: .3s;
     transition: .3s;
 }
 .cate-mask .cate-content .t-box {
       display: -webkit-box;
       display: -webkit-flex;
-      display: -ms-flexbox;
       display: flex;
       -webkit-box-orient: horizontal;
       -webkit-box-direction: normal;
       -webkit-flex-direction: row;
-          -ms-flex-direction: row;
               flex-direction: row;
       -webkit-box-pack: justify;
       -webkit-justify-content: space-between;
-          -ms-flex-pack: justify;
               justify-content: space-between;
       -webkit-box-align: center;
       -webkit-align-items: center;
-          -ms-flex-align: center;
               align-items: center;
       background-color: #f4f4f4;
       font-size: 30rpx;
@@ -171,23 +149,19 @@ page,
 }
 .cate-mask.show .cate-content {
       -webkit-transform: translateX(0);
-          -ms-transform: translateX(0);
               transform: translateX(0);
 }
 .cate-mask.shows .cate-content {
     -webkit-transform: translateX(0);
-        -ms-transform: translateX(0);
             transform: translateX(0);
 }
 .cate-box {
   display: -webkit-box;
   display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   -webkit-flex-direction: column;
-      -ms-flex-direction: column;
           flex-direction: column;
   margin-top: 30rpx;
   height: 88%;
@@ -202,20 +176,16 @@ page,
 .cate-box .nav {
     display: -webkit-box;
     display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
     -webkit-flex-direction: row;
-        -ms-flex-direction: row;
             flex-direction: row;
     -webkit-box-pack: justify;
     -webkit-justify-content: space-between;
-        -ms-flex-pack: justify;
             justify-content: space-between;
     -webkit-box-align: center;
     -webkit-align-items: center;
-        -ms-flex-align: center;
             align-items: center;
     padding: 20rpx 40rpx;
     margin: 20rpx 0rpx;
@@ -228,19 +198,15 @@ page,
 .cate-box .type-box {
     display: -webkit-box;
     display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
     -webkit-flex-direction: row;
-        -ms-flex-direction: row;
             flex-direction: row;
     -webkit-flex-wrap: wrap;
-        -ms-flex-wrap: wrap;
             flex-wrap: wrap;
     -webkit-box-pack: justify;
     -webkit-justify-content: space-between;
-        -ms-flex-pack: justify;
             justify-content: space-between;
     width: 100%;
     padding: 0rpx 40rpx;
@@ -260,16 +226,13 @@ page,
 .cate-box .price-box {
     display: -webkit-box;
     display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
     -webkit-flex-direction: row;
-        -ms-flex-direction: row;
             flex-direction: row;
     -webkit-box-pack: justify;
     -webkit-justify-content: space-between;
-        -ms-flex-pack: justify;
             justify-content: space-between;
     margin: 40rpx 40rpx 0rpx 40rpx;
 }
@@ -285,12 +248,10 @@ page,
 .cate-list {
   display: -webkit-box;
   display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   -webkit-flex-direction: column;
-      -ms-flex-direction: column;
           flex-direction: column;
   height: 100%;
   padding-bottom: 110rpx;
@@ -298,16 +259,13 @@ page,
 .cate-list .cate-flow {
     display: -webkit-box;
     display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
     -webkit-flex-direction: row;
-        -ms-flex-direction: row;
             flex-direction: row;
     flex-direction: row;
     -webkit-flex-wrap: wrap;
-        -ms-flex-wrap: wrap;
             flex-wrap: wrap;
     padding-left: 30rpx;
     margin: 15rpx 0rpx;
@@ -334,11 +292,9 @@ page,
 .cate-list .cate-item-p {
     display: -webkit-box;
     display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
     -webkit-box-align: center;
     -webkit-align-items: center;
-        -ms-flex-align: center;
             align-items: center;
     text-align: center;
     padding-left: 30rpx;
@@ -356,10 +312,8 @@ page,
 .goods-list {
   display: -webkit-box;
   display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   -webkit-flex-wrap: wrap;
-      -ms-flex-wrap: wrap;
           flex-wrap: wrap;
   padding: 0 30rpx;
   background: #fff;
@@ -367,12 +321,10 @@ page,
 .goods-list .goods-item {
     display: -webkit-box;
     display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
     -webkit-flex-direction: column;
-        -ms-flex-direction: column;
             flex-direction: column;
     width: 48%;
     padding-bottom: 40rpx;
@@ -384,7 +336,6 @@ page,
     width: 100%;
     height: 330rpx;
     -webkit-flex-shrink: 0;
-        -ms-flex-negative: 0;
             flex-shrink: 0;
     position: relative;
 }
@@ -403,15 +354,12 @@ page,
 .goods-list .price-box {
     display: -webkit-box;
     display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
     -webkit-box-align: center;
     -webkit-align-items: center;
-        -ms-flex-align: center;
             align-items: center;
     -webkit-box-pack: justify;
     -webkit-justify-content: space-between;
-        -ms-flex-pack: justify;
             justify-content: space-between;
     padding-right: 10rpx;
     font-size: 24rpx;

@@ -191,17 +191,16 @@
 		},
 		methods: {
 			//第一次加载分类
-			async loadCateList() {
-				let result = await this.$api.callApix({
-					params: "",
-					action: "filter/getFilterList"
+			loadCateList() {
+				this.$Request.get(this.$api.goods.getFilterList).then(res => {
+					this.MallGoodsList = res.data;
+				},err => {
+					console.log("err: " + JSON.stringify(err));
 				});
-				if (result.IsSuccess) {
-					this.MallGoodsList = result.data;
-				}
+				
 			},
 			//加载商品 ，带下拉刷新和上滑加载
-			async loadData(type = 'add', loading) {
+			loadData(type = 'add', loading) {
 				//没有更多直接返回
 				if (type === 'add') {
 					if (this.loadingType === 'nomore') {
@@ -211,30 +210,26 @@
 				} else {
 					this.loadingType = 'more'
 				}
-				let result = await this.$api.callApix({
-					params: "",
-					action: "filter/getFilterList",
-					notLoading: true
-				});
-				let goodsList = [];
-				if (result.IsSuccess) {
-					goodsList = result.data;
-				}
-				if (type === 'refresh') {
-					this.MallGoodsList = goodsList;
-				} else {
-					this.MallGoodsList = this.MallGoodsList.concat(goodsList);
-				}
-
-				//判断是否还有下一页，有是more  没有是nomore(测试数据判断大于20就没有了)
-				this.loadingType = this.MallGoodsList < 500 ? 'nomore' : 'more';
-				if (type === 'refresh') {
-					if (loading == 1) {
-						// uni.hideLoading();
+				this.$Request.get(this.$api.goods.getFilterList).then(res => {
+					let	goodsList = res.data;
+					if (type === 'refresh') {
+						this.MallGoodsList = goodsList;
 					} else {
-						uni.stopPullDownRefresh();
+						this.MallGoodsList = this.MallGoodsList.concat(goodsList);
 					}
-				}
+					
+					//判断是否还有下一页，有是more  没有是nomore(测试数据判断大于20就没有了)
+					this.loadingType = this.MallGoodsList < 500 ? 'nomore' : 'more';
+					if (type === 'refresh') {
+						if (loading == 1) {
+							// uni.hideLoading();
+						} else {
+							uni.stopPullDownRefresh();
+						}
+					}
+				},err => {
+					console.log("err: " + JSON.stringify(err));
+				});
 			},
 			//监听image加载完成
 			onImageLoad(key, index) {
@@ -338,7 +333,7 @@
 			navToDetailPage(item) {
 				//为了模拟数据，正常项目里按照业务传值
 				uni.navigateTo({
-					url: `/pages/product/detail?goods=${this.$api.putExtra(item)}`
+					url: `/pages/product/detail?goods=${this.$utils.putExtra(item)}`
 				})
 			},
 			stopPrevent() {}

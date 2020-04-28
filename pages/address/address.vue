@@ -34,25 +34,23 @@
 		},
 		methods: {
 			async loadData() {
-				let result = await this.$api.callApix({
-					param: "",
-					action: "address/getAddressList"
-				});
-				if (result.IsSuccess) {
+				this.$Request.get(this.$api.user.getAddressList).then(res => {
 					if(!this.AddressID && this.AddressID!=0){
-						let currAddress = result.data[0];
-						for (let i = 0; i < result.data.length; i++) {
-							let item = result.data[i];
+						let currAddress = res.data[0];
+						for (let i = 0; i < res.data.length; i++) {
+							let item = res.data[i];
 							if (item.AddressID == this.AddressID) {
 								currAddress = item;
-								result.data.splice(i, 1); // 如果数据组存在该元素，则把该元素删除
+								res.data.splice(i, 1); // 如果数据组存在该元素，则把该元素删除
 								break;
 							}
 						}
-						result.data.unshift(currAddress); // 再添加到第一个位置
+						res.data.unshift(currAddress); // 再添加到第一个位置
 					}
-					this.addressList = result.data;
-				}
+					this.addressList = res.data;
+				},err => {
+					console.log("err: " + JSON.stringify(err));
+				});
 			},
 			//选择地址
 			checkAddress(item){
@@ -64,7 +62,7 @@
 			},
 			addAddress(type, item){
 				uni.navigateTo({
-					url: `/pages/address/addressEdit?type=${type}&data=${this.$api.putExtra(item)}`
+					url: `/pages/address/addressEdit?type=${type}&data=${this.$utils.putExtra(item)}`
 				})
 			},
 			//添加或修改成功之后回调

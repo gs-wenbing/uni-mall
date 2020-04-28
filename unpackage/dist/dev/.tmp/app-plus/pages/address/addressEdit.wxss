@@ -12,11 +12,9 @@ page {
 .row {
   display: -webkit-box;
   display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
   -webkit-align-items: center;
-      -ms-flex-align: center;
           align-items: center;
   position: relative;
   padding: 0 30rpx;
@@ -25,7 +23,6 @@ page {
 }
 .row .tit {
     -webkit-flex-shrink: 0;
-        -ms-flex-negative: 0;
             flex-shrink: 0;
     width: 120rpx;
     font-size: 30rpx;
@@ -34,7 +31,6 @@ page {
 .row .input {
     -webkit-box-flex: 1;
     -webkit-flex: 1;
-        -ms-flex: 1;
             flex: 1;
     font-size: 30rpx;
     color: #303133;
@@ -49,26 +45,21 @@ page {
 .default-row .tit {
     -webkit-box-flex: 1;
     -webkit-flex: 1;
-        -ms-flex: 1;
             flex: 1;
 }
 .default-row switch {
     -webkit-transform: translateX(16rpx) scale(0.9);
-        -ms-transform: translateX(16rpx) scale(0.9);
             transform: translateX(16rpx) scale(0.9);
 }
 .add-btn {
   display: -webkit-box;
   display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
   -webkit-align-items: center;
-      -ms-flex-align: center;
           align-items: center;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
-      -ms-flex-pack: center;
           justify-content: center;
   width: 690rpx;
   height: 80rpx;
@@ -77,28 +68,24 @@ page {
   color: #fff;
   background-color: #E60012;
   border-radius: 10rpx;
-  -webkit-box-shadow: 1px 2px 5px rgba(219, 63, 96, 0.4);
-          box-shadow: 1px 2px 5px rgba(219, 63, 96, 0.4);
+  box-shadow: 1px 2px 5px rgba(219, 63, 96, 0.4);
 }
 /* 地址选择面板 */
 .mask {
   display: -webkit-box;
   display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   -webkit-box-align: end;
   -webkit-align-items: flex-end;
-      -ms-flex-align: end;
           align-items: flex-end;
   position: fixed;
   left: 0;
-  top: 0px;
+  top: var(--window-top);
   bottom: 0;
   width: 100%;
   background: transparent;
   z-index: 9995;
   -webkit-transition: .3s;
-  -o-transition: .3s;
   transition: .3s;
 }
 .mask .mask-content {
@@ -106,10 +93,8 @@ page {
     height: 60vh;
     background: #f3f3f3;
     -webkit-transform: translateY(100%);
-        -ms-transform: translateY(100%);
             transform: translateY(100%);
     -webkit-transition: .3s;
-    -o-transition: .3s;
     transition: .3s;
 }
 .mask.none {
@@ -120,7 +105,6 @@ page {
 }
 .mask.show .mask-content {
       -webkit-transform: translateY(0);
-          -ms-transform: translateY(0);
               transform: translateY(0);
 }
 

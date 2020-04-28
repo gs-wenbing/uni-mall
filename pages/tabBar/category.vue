@@ -23,9 +23,7 @@
 </template>
 
 <script>
-	import {
-		mapState
-	} from 'vuex';
+	
 	export default {
 		data() {
 			return {
@@ -41,14 +39,13 @@
 			this.loadData();
 		},
 		methods: {
-			async loadData(){
-				let result = await this.$api.callApix({
-					param:"",
-					action:"home/getGoodsClass"
+			loadData(){
+				this.$Request.get(this.$api.home.getGoodsClass).then(res => {
+					this.analysisData(res.data);
+				},err => {
+					console.log("err: " + JSON.stringify(err));
 				});
-				if(result.IsSuccess){
-					this.analysisData(result.data);
-				}
+				
 			},
 			analysisData(classList){
 				this.currentId = classList[0].GoodsClassID;

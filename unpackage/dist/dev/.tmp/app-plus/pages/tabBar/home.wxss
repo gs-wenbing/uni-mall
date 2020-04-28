@@ -19,8 +19,7 @@ page {
 .carousel-section .titleNview-placing {
     height: var(--status-bar-height);
     padding-top: 44px;
-    -webkit-box-sizing: content-box;
-            box-sizing: content-box;
+    box-sizing: content-box;
 }
 .carousel-section .titleNview-background {
     position: absolute;
@@ -29,7 +28,6 @@ page {
     width: 100%;
     height: 374rpx;
     -webkit-transition: .4s;
-    -o-transition: .4s;
     transition: .4s;
 }
 .carousel {
@@ -50,7 +48,6 @@ page {
 .swiper-dots {
   display: -webkit-box;
   display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   position: absolute;
   left: 60rpx;
@@ -77,24 +74,19 @@ page {
     font-size: 12rpx;
     color: #fff;
     -webkit-transform: translateX(-50%);
-        -ms-transform: translateX(-50%);
             transform: translateX(-50%);
 }
 /* 分类 */
 .cate-section {
   display: -webkit-box;
   display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   -webkit-justify-content: space-around;
-      -ms-flex-pack: distribute;
           justify-content: space-around;
   -webkit-box-align: center;
   -webkit-align-items: center;
-      -ms-flex-align: center;
           align-items: center;
   -webkit-flex-wrap: wrap;
-      -ms-flex-wrap: wrap;
           flex-wrap: wrap;
   padding: 30rpx 22rpx;
   background: #fff;
@@ -103,16 +95,13 @@ page {
 .cate-section .cate-item {
     display: -webkit-box;
     display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
     -webkit-flex-direction: column;
-        -ms-flex-direction: column;
             flex-direction: column;
     -webkit-box-align: center;
     -webkit-align-items: center;
-        -ms-flex-align: center;
             align-items: center;
     font-size: 26rpx;
     color: #303133;
@@ -123,8 +112,7 @@ page {
     margin-bottom: 14rpx;
     border-radius: 50%;
     opacity: .7;
-    -webkit-box-shadow: 4rpx 4rpx 20rpx rgba(250, 67, 106, 0.3);
-            box-shadow: 4rpx 4rpx 20rpx rgba(250, 67, 106, 0.3);
+    box-shadow: 4rpx 4rpx 20rpx rgba(250, 67, 106, 0.3);
 }
 /* 爆款专区 */
 .seckill-section {
@@ -134,11 +122,9 @@ page {
 .seckill-section .s-header {
     display: -webkit-box;
     display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
     -webkit-box-align: center;
     -webkit-align-items: center;
-        -ms-flex-align: center;
             align-items: center;
     height: 92rpx;
     line-height: 1;
@@ -158,7 +144,6 @@ page {
       color: #909399;
       -webkit-box-flex: 1;
       -webkit-flex: 1;
-          -ms-flex: 1;
               flex: 1;
       text-align: right;
 }
@@ -169,11 +154,9 @@ page {
 .seckill-section .scoll-wrapper {
     display: -webkit-box;
     display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
     -webkit-box-align: start;
     -webkit-align-items: flex-start;
-        -ms-flex-align: start;
             align-items: flex-start;
     display: inline-block;
     width: 690rpx;
@@ -190,7 +173,6 @@ page {
       width: 155rpx;
       height: 155rpx;
       -webkit-flex-shrink: 0;
-          -ms-flex-negative: 0;
               flex-shrink: 0;
       position: relative;
 }
@@ -203,11 +185,9 @@ page {
 .f-header {
   display: -webkit-box;
   display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
   -webkit-align-items: center;
-      -ms-flex-align: center;
           align-items: center;
   height: 100rpx;
   padding: 6rpx 30rpx 8rpx;
@@ -215,7 +195,6 @@ page {
 }
 .f-header image {
     -webkit-flex-shrink: 0;
-        -ms-flex-negative: 0;
             flex-shrink: 0;
     width: 50rpx;
     height: 50rpx;
@@ -224,16 +203,13 @@ page {
 .f-header .tit-box {
     -webkit-box-flex: 1;
     -webkit-flex: 1;
-        -ms-flex: 1;
             flex: 1;
     display: -webkit-box;
     display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
     -webkit-flex-direction: column;
-        -ms-flex-direction: column;
             flex-direction: column;
 }
 .f-header .tit {
@@ -274,10 +250,8 @@ page {
 .class-floor .guess-section {
     display: -webkit-box;
     display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
     -webkit-flex-wrap: wrap;
-        -ms-flex-wrap: wrap;
             flex-wrap: wrap;
     width: 750rpx;
     background: #fff;
@@ -287,12 +261,10 @@ page {
 .class-floor .guess-section .guess-item {
       display: -webkit-box;
       display: -webkit-flex;
-      display: -ms-flexbox;
       display: flex;
       -webkit-box-orient: vertical;
       -webkit-box-direction: normal;
       -webkit-flex-direction: column;
-          -ms-flex-direction: column;
               flex-direction: column;
       width: 33.3%;
       padding-bottom: 40rpx;
@@ -301,7 +273,6 @@ page {
       width: 230rpx;
       height: 260rpx;
       -webkit-flex-shrink: 0;
-          -ms-flex-negative: 0;
               flex-shrink: 0;
       position: relative;
 }

@@ -258,8 +258,7 @@ audio,
 camera,
 image,
 video {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
 }
 image {
   will-change: transform;
@@ -280,7 +279,6 @@ image {
     width: 100%;
     height: 100%;
     -webkit-transition: .6s;
-    -o-transition: .6s;
     transition: .6s;
     opacity: 0;
 }
@@ -289,8 +287,7 @@ image {
 }
 .clamp {
   overflow: hidden;
-  -o-text-overflow: ellipsis;
-     text-overflow: ellipsis;
+  text-overflow: ellipsis;
   white-space: nowrap;
   display: block;
 }
@@ -307,7 +304,6 @@ image {
   height: 0;
   content: '';
   -webkit-transform: scaleY(0.5);
-      -ms-transform: scaleY(0.5);
           transform: scaleY(0.5);
   border-bottom-width: 1px;
   border-bottom-style: solid;

@@ -43,14 +43,12 @@ export default {
 		this.loadData();
 	},
 	methods: {
-		async loadData() {
-			let result = await this.$api.callApix({
-				params: "",
-				action: "search/getSearchTags"
+		loadData() {
+			this.$Request.get(this.$api.home.getSearchTags).then(res => {
+				this.tagList = res.data;
+			},err => {
+				console.log("err: " + JSON.stringify(err));
 			});
-			if (result.IsSuccess) {
-				this.tagList = result.data;
-			}
 		},
 		navTo(tagName) {
 			uni.redirectTo({

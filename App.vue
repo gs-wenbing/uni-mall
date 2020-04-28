@@ -17,19 +17,24 @@
 			...mapMutations(['login']),
 		},
 		onLaunch: function() {
-			plus.screen.lockOrientation('portrait-primary'); //锁定
-
-			let userInfo = uni.getStorageSync('userInfo') || '';
-			if (userInfo.UserAccountID) {
+			//#ifdef APP-PLUS
+			plus.screen.lockOrientation('portrait-primary'); //锁定屏幕方向 
+			//#endif
+			//#ifdef APP-PLUS
+			// APP检测更新 具体可以参考：https://ask.dcloud.net.cn/article/35667
+			
+			//#endif
+			
+			let userInfo = uni.getStorageSync('USER_KEY') || '';
+			if(userInfo.UserAccountID){
 				//更新登陆状态
 				uni.getStorage({
-					key: 'userInfo',
+					key: 'USER_KEY',
 					success: (res) => {
 						this.login(res.data);
 					}
 				});
 			}
-
 		},
 		onShow: function() {
 			console.log('App Show')

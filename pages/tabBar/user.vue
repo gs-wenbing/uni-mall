@@ -178,6 +178,9 @@
 			...mapState(['hasLogin', 'userInfo'])
 		},
 		methods: {
+			refrashUserInfo(){
+				
+			},
 			navToLogin(){
 				if (!this.hasLogin) {
 					uni.navigateTo({
