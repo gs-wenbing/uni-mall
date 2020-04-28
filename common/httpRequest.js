@@ -24,9 +24,11 @@ module.exports = {
 		}
 		return info;
 	},
-	post: function(url, data) {
-		url = this.config("APIHOST")+url;
+	post: function(url, data,hideLoading) {
+		let $that = this;
+		url = $that.config("APIHOST")+url;
 		console.log(">>>>>>>>>>>>>>>>>>");
+		if(!hideLoading)uni.showLoading();
 		return new Promise((succ, error) => {
 			uni.request({
 				url: url,
@@ -36,25 +38,21 @@ module.exports = {
 					'Content-Type': 'application/json'
 				},
 				success: function(result) {
-					if (result.statusCode == 200) {
-						if (result.data.result == 0) {
-							succ.call(self, result.data)
-						} else {
-							error.call(self, result)
-						}
-					} else {
-						error.call(self, result)
-					}
+					if(!hideLoading)uni.hideLoading();
+					$that.parseData(succ, error,result);
 				},
 				fail: function(e) {
-					error.call(self, e)
+					if(!hideLoading)uni.hideLoading();
+					error(e)
 				}
 			})
 		})
 	},
-	get: function(url, data) {
-		url = this.config("APIHOST")+url;
+	get: function(url, data,hideLoading) {
+		let $that = this;
+		url = $that.config("APIHOST")+url;
 		console.log("url: " + url);
+		if(!hideLoading)uni.showLoading();
 		return new Promise((succ, error) => {
 			uni.request({
 				url: url,
@@ -64,20 +62,25 @@ module.exports = {
 					'Content-Type': 'application/json'
 				},
 				success: function(result) {
-					if (result.statusCode == 200) {
-						if (result.data.result == 0) {
-							succ.call(self, result.data)
-						} else {
-							error.call(self,result)
-						}
-					} else {
-						error.call(self, result)
-					}
+					if(!hideLoading)uni.hideLoading();
+					$that.parseData(succ, error,result);
 				},
 				fail: function(e) {
-					error.call(self, e)
+					if(!hideLoading)uni.hideLoading();
+					error(e)
 				}
 			})
 		})
+	},
+	parseData: function(succ, error,result){
+		if (result.statusCode == 200) {
+			if (result.data.result == 0) {
+				succ(result.data)
+			} else {
+				error(result)
+			}
+		} else {
+			error(result)
+		}
 	}
 }

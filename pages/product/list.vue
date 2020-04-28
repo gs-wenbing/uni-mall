@@ -157,6 +157,8 @@
 			// #endif
 			// #ifdef APP-PLUS  
 			this.searchKey = options.key;
+			let GoodsClassID = options.GoodsClassID;
+			console.log("GoodsClassID: " + GoodsClassID);
 			if(this.searchKey){
 				var webView = this.$mp.page.$getAppWebview();
 				webView.setTitleNViewSearchInputText(this.searchKey);
@@ -210,7 +212,8 @@
 				} else {
 					this.loadingType = 'more'
 				}
-				this.$Request.get(this.$api.goods.getFilterList).then(res => {
+				let params = {};
+				this.$Request.get(this.$api.goods.getFilterList,params,true).then(res => {
 					let	goodsList = res.data;
 					if (type === 'refresh') {
 						this.MallGoodsList = goodsList;

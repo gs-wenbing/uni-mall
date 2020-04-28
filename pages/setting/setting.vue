@@ -61,7 +61,8 @@
 				    success: (e)=>{
 				    	if(e.confirm){
 				    		this.logout();
-							this.$utils.prePage();
+							// this.$utils.prePage();
+							uni.navigateBack();  
 				    	}
 				    }
 				});

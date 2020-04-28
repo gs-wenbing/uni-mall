@@ -12,8 +12,10 @@ module.exports = {
 		});
 	},
 	prePage: function() {
+		
 		let pages = getCurrentPages();
 		let prePage = pages[pages.length - 2];
+		console.log("prePage: prePage");
 		// #ifdef H5
 		return prePage;
 		// #endif
