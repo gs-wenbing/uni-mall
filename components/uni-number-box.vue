@@ -58,7 +58,6 @@
 			this.minDisabled = this.isMin;
 		},
 		computed: {
-
 		},
 		watch: {
 			inputValue(number) {
@@ -75,7 +74,6 @@
 				let value = this.inputValue * scale;
 				let newValue = 0;
 				let step = this.step * scale;
-
 				if (type === 'subtract') {
 					newValue = value - step;
 					if (newValue <= this.min) {
@@ -124,7 +122,6 @@
 				} else if (value < this.min) {
 					value = this.min
 				}
-
 				this.inputValue = value
 			}
 		}
@@ -144,7 +141,6 @@
 		border: #F0F0F0 solid 1px;
 		border-radius: 10rpx;
 	}
-
 	.uni-numbox-minus,
 	.uni-numbox-plus {
 		margin: 0;
@@ -155,25 +151,21 @@
 		text-align: center;
 		position: relative;
 	}
-
 	.uni-numbox-minus .mallicon,
 	.uni-numbox-plus .mallicon {
 		font-size: 36upx;
 		color: #555;
 	}
-
 	.uni-numbox-minus {
 		border-right: none;
 		border-top-left-radius: 6upx;
 		border-bottom-left-radius: 6upx;
 	}
-
 	.uni-numbox-plus {
 		border-left: none;
 		border-top-right-radius: 6upx;
 		border-bottom-right-radius: 6upx;
 	}
-
 	.uni-numbox-value {
 		position: relative;
 		background-color: #fff;
@@ -183,7 +175,6 @@
 		padding: 0;
 		font-size: 30upx;
 	}
-
 	.uni-numbox-disabled.malliconon {
 		color: #d6d6d6;
 	}

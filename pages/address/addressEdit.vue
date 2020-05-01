@@ -65,7 +65,7 @@
 			let title = '新增收货地址';
 			if(option.type==='edit'){
 				title = '编辑收货地址'
-				this.addressData = this.$api.getExtra(option.data)
+				this.addressData = this.$utils.getExtra(option.data)
 			}
 			this.manageType = option.type;
 			uni.setNavigationBarTitle({
@@ -104,25 +104,25 @@
 			confirm(){
 				let data = this.addressData;
 				if(!data.RecieveName){
-					this.$api.msg('请填写收货人姓名');
+					this.$utils.showMsg('请填写收货人姓名');
 					return;
 				}
 				if(!/(^1[3|4|5|7|8][0-9]{9}$)/.test(data.MobilePhone)){
-					this.$api.msg('请输入正确的手机号码');
+					this.$utils.showMsg('请输入正确的手机号码');
 					return;
 				}
 				if(!data.Address){
-					this.$api.msg('请在地图选择所在位置');
+					this.$utils.showMsg('请在地图选择所在位置');
 					return;
 				}
 				if(!data.AddressDetail){
-					this.$api.msg('请填写门牌号信息');
+					this.$utils.showMsg('请填写门牌号信息');
 					return;
 				}
 				
 				//this.$api.prePage()获取上一页实例，可直接调用上页所有数据和方法，在App.vue定义
 				this.$api.prePage().refreshList();
-				this.$api.msg(`地址${this.manageType=='edit' ? '修改': '添加'}成功`);
+				this.$utils.showMsg(`地址${this.manageType=='edit' ? '修改': '添加'}成功`);
 				setTimeout(()=>{
 					uni.navigateBack()
 				}, 800)

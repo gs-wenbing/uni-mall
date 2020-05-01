@@ -8,7 +8,7 @@
 						<image class="portrait" :src="userInfo.HeadImageUrl || '/static/missing-face.png'"></image>
 					</div>
 					<div class="info-box">
-						<text class="username" @click="navToLogin">{{userInfo.UserName || '去登陆'}}</text>
+						<text class="username" @click="navToLogin">{{userInfo.UserName || '去登陆1'}}</text>
 						<text class="department"  v-if="hasLogin">派送方：{{userInfo.DepartmentName}}</text>
 						<div class="tag-box" v-if="hasLogin">
 							<text class="tag-phone">销售经理：{{userInfo.Salesman}}</text>
@@ -71,11 +71,10 @@
 </template>
 <script>
 	const globalEvent = weex.requireModule('globalEvent');
+	import { mapState } from 'vuex';
 	export default {
 		data() {
 			return {
-				hasLogin:false,
-				userInfo: {},
 				toolItems: [{
 					src: "/static/user/bgblock_01.png",
 					title: "建议订单",
@@ -116,7 +115,9 @@
 
 			}
 		},
-		
+		computed: {
+			...mapState(['hasLogin', 'userInfo'])
+		},
 		beforeCreate() {
 			// https://weex.apache.org/zh/docs/modules/dom.html#addrule
 			const domModule = weex.requireModule("dom");
@@ -126,7 +127,6 @@
 			})
 		},
 		created() {
-			// this.refrashUserInfo();
 			uni.onNavigationBarButtonTap((e)=>{
 				uni.navigateTo({
 					url:'/pages/setting/setting'
@@ -137,21 +137,8 @@
                 console.log(e.data);
             });
 		},
-		onShow() {
-			console.log(getApp().globalData.text);
-			this.refrashUserInfo();
-		},
 		methods:{
-			refrashUserInfo(){
-				let userInfo = uni.getStorageSync('userInfo') || '';
-				if(userInfo.UserAccountID){
-					this.userInfo = userInfo;
-					this.hasLogin = true;
-				}else{
-					this.userInfo = {};
-					this.hasLogin = false;
-				}
-			},
+			
 			navToLogin(){
 				if (!this.hasLogin) {
 					uni.navigateTo({

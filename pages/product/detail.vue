@@ -149,32 +149,31 @@
 		async onLoad(options) {
 			//接收传值goods
 			let goods = options.goods;
-			this.TransGoods = this.$api.getExtra(goods);
+			this.TransGoods = this.$utils.getExtra(goods);
 			this.loadData();
 		},
 		methods: {
 			//请求数据
-			async loadData() {
-				let result = await this.$api.callApix({
-					param: "",
-					action: "goods/getGoodsDetail"
-				});
-				if (result.IsSuccess) {
+			loadData() {
+				this.$Request.get(this.$api.goods.getGoodsDetail).then(res => {
 					//描述图片信息
-					var GoodsDesc = decodeURIComponent(result.data.GoodsDetail.GoodsDesc);
+					var GoodsDesc = decodeURIComponent(res.data.GoodsDetail.GoodsDesc);
 					GoodsDesc = GoodsDesc.replace(new RegExp("{IMGIP}", 'g'), "res.genvana.cn").replace(new RegExp("<img ", 'g'),
 						'<img style="width:100%;display:block;" ');
-					result.data.GoodsDetail.GoodsDesc = GoodsDesc;
-
-					this.GoodsDetail = result.data.GoodsDetail;
-					this.GoodsPicURLList = result.data.GoodsPicURLList;
+					res.data.GoodsDetail.GoodsDesc = GoodsDesc;
+					
+					this.GoodsDetail = res.data.GoodsDetail;
+					this.GoodsPicURLList = res.data.GoodsPicURLList;
 					//为了测试详情页的图片不一样，正在项目里是不要的
 					this.GoodsPicURLList.unshift({
 						PicURL:this.TransGoods.DefaultPicURL
 					});
-					this.GoodsSkuList = result.data.GoodsSkuList;
-					this.GoodsUnitTemplateList = result.data.GoodsUnitTemplateList;
-				}
+					this.GoodsSkuList = res.data.GoodsSkuList;
+					this.GoodsUnitTemplateList = res.data.GoodsUnitTemplateList;
+				},err => {
+					console.log("err: " + JSON.stringify(err));
+				});
+				
 			},
 			//监听image加载完成
 			onImageLoad(key, index) {
@@ -260,12 +259,12 @@
 				this.TransGoods.CartNum = 1;
 				data.push(this.TransGoods);
 				uni.navigateTo({
-					url: `/pages/order/placeOrder?data=${this.$api.putExtra(data)}`
+					url: `/pages/order/placeOrder?data=${this.$utils.putExtra(data)}`
 				})
 			},
 			addCart() {
 				this.cartNum++;
-				this.$api.msg("添加成功！在购物车等亲")
+				this.$utils.showMsg("添加成功！在购物车等亲")
 			},
 			stopPrevent() {}
 		},

@@ -21,7 +21,7 @@
 			<text class="cell-tit">联系客服</text>
 			<text class="cell-more mallicon icon-you"></text>
 		</view>
-		<view class="list-cell b-b" @click="navTo('关于我们')" hover-class="cell-hover" :hover-stay-time="50">
+		<view class="list-cell b-b" @click="navTo('about')" hover-class="cell-hover" :hover-stay-time="50">
 			<text class="cell-tit">关于我们</text>
 			<text class="cell-more mallicon icon-you"></text>
 		</view>
@@ -61,16 +61,8 @@
 				    success: (e)=>{
 				    	if(e.confirm){
 				    		this.logout();
-							// let pages = getCurrentPages();
-							// let prePage = pages[pages.length - 2];
-							// var currentWebview = prePage.$getAppWebview();
-							// plus.webview.postMessageToUniNView({
-							// 	refrash: true
-							// }, currentWebview.id);
-							this.$api.prePage().refrashUserInfo();
-				    		setTimeout(()=>{
-				    			uni.navigateBack();
-				    		}, 200)
+							// this.$utils.prePage();
+							uni.navigateBack();  
 				    	}
 				    }
 				});

@@ -65,7 +65,19 @@
 		}, {
 			"path": "pages/tabBar/cart",
 			"style": {
-				"navigationBarTitleText": "购物车"
+				"navigationBarTitleText": "购物车",
+				"app-plus": {
+					"titleNView": {
+						"buttons": [{
+								"text": "编辑",
+								"fontSize": "14",
+								"float": "right",
+								"width": "44px",
+								"background": "rgba(0,0,0,0)"
+							}
+						]
+					}
+				}
 			}
 		}, {
 			"path": "pages/tabBar/user",
@@ -193,6 +205,12 @@
 				"navigationBarTitleText": "设置"
 			}
 		}
+		// , {
+		// 	"path": "pages/setting/about",
+		// 	"style": {
+		// 		"navigationBarTitleText": "关于"
+		// 	}
+		// }
 
 	],
 	"globalStyle": {

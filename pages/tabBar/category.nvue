@@ -1,24 +1,34 @@
 <template>
-	<div class="page" >
+	<div class="page">
 		<!-- https://weex.apache.org/zh/docs/components/list.html#%E7%AE%80%E4%BB%8B -->
-		<list class="left" @scroll="scroll" offset-accuracy=100 show-scrollbar=false>
-			<cell v-for="(category,index) in categoryList" :key="index" :ref="'tab' + index">
+		<list class="left" @scroll="scroll" offset-accuracy="100" show-scrollbar="false">
+			<cell v-for="(category, index) in categoryList" :key="index" :ref="'tab' + index">
 				<div class="left-panel" :class="[index == currentIndex ? 'left-panel-active' : '']" @click="goToCategory($event, 'category' + index, index)">
 					<div class="left-block" :class="[index == currentIndex ? 'left-block-active' : '']"></div>
 					<text class="left-text" :class="[index == currentIndex ? 'left-text-active' : '']">{{ category.GoodsClassName }}</text>
 				</div>
 			</cell>
 		</list>
-		<list class="right" @scroll="scroll" offset-accuracy=100 show-scrollbar=false>
-			<cell v-for="(category,index) in categoryList" :key="index" 
-			:ref="'category' + index" @disappear="ondisappear($event, 'tab' + index, index)" @appear="onappear($event, 'tab' + index, index)">
+		<list class="right" @scroll="scroll" offset-accuracy="100" show-scrollbar="false">
+			<cell
+				v-for="(category, index) in categoryList"
+				:key="index"
+				:ref="'category' + index"
+				@disappear="ondisappear($event, 'tab' + index, index)"
+				@appear="onappear($event, 'tab' + index, index)"
+			>
 				<div class="right-panel">
 					<text class="right-title">{{ category.GoodsClassName }}</text>
 					<div class="right-list">
 						<div class="right-box" v-for="(child, i) in category.children" :key="i" @click="navToList(child)">
 							<div class="image-wrapper">
-								<image class="right-image" :src="child.PicURL" lazy-load @load="onImageLoad('categoryList', index,i)"
-								@error="onImageError('categoryList', index,i)"></image>
+								<image
+									class="right-image"
+									:src="child.PicURL"
+									lazy-load
+									@load="onImageLoad('categoryList', index, i)"
+									@error="onImageError('categoryList', index, i)"
+								></image>
 							</div>
 							<text class="right-text">{{ child.GoodsClassName }}</text>
 						</div>
@@ -27,216 +37,213 @@
 			</cell>
 		</list>
 	</div>
-
 </template>
 
 <script>
-	const dom = weex.requireModule('dom') || {};
-	export default {
-		data() {
-			return {
-				currentIndex: 0,
-				stopAppear:false,
-				categoryList:[],
+const dom = weex.requireModule('dom') || {};
+import httpApi from '../../common/httpApi.js';
+import httpRequest from '../../common/httpRequest.js';
+export default {
+	data() {
+		return {
+			currentIndex: 0,
+			stopAppear: false,
+			categoryList: []
+		};
+	},
+	created() {
+		httpRequest.get(httpApi.home.getGoodsClass).then(res => {
+			this.categoryList = res.data;
+		},err => {
+			console.log("err: " + JSON.stringify(err));
+		});
+	},
+	methods: {
+		navToList(child) {
+			uni.navigateTo({
+				url: `/pages/product/list?GoodsClassID=${child.GoodsClassID}&key=${child.GoodsClassName}`
+			});
+		},
+		//监听image加载完成
+		onImageLoad(key, index, i) {
+			this.$set(this[key][index].children[i], 'loaded', 'loaded');
+		},
+		//监听image加载失败
+		onImageError(key, index, i) {
+			this[key][index].children[i].PicURL = '/static/errorImage.jpg';
+		},
+		//https://weex.apache.org/zh/docs/events/common-events.html#appear
+		goToCategory(event, refId, index) {
+			if (this.currentIndex == index) {
+				return;
+			}
+			clearTimeout(this.timer);
+			this.stopAppear = true;
+			this.currentIndex = index;
+
+			const target = event.target;
+			const ref = this.$refs[refId];
+			this.leftScrollToElement(index, target);
+			ref && dom.scrollToElement(ref[0], { offset: 0 });
+			if (plus.os.name == 'Android') {
+				this.timer = setTimeout(() => {
+					this.stopAppear = false;
+				}, 1000);
+			} else {
+				this.timer = setTimeout(() => {
+					this.stopAppear = false;
+				}, 300);
 			}
 		},
-		created() {
-			uni.request({  
-				url: 'https://mockapi.eolinker.com/p6QCAEw5a26610182ff15ddc6f4f212776fdfbb3ce18328/home/getGoodsClass',
-				method:"GET",  
-				success: (res)=> { 
-					if(res.statusCode == 200 && res.data.result==0){
-						this.categoryList = res.data.data;
-					}
-					// console.log(JSON.stringify(this.categoryList)); 
-				}  
-			}); 
+		ondisappear($event, refId, index) {
+			if ($event.direction == 'up') {
+				this.checkScroll($event.direction, refId, index);
+			}
 		},
-		methods: {
-			navToList(child){
-				uni.navigateTo({
-					url: `/pages/product/list?GoodsClassID=${child.GoodsClassID}`
-				})
-			},
-			//监听image加载完成
-			onImageLoad(key, index, i) {
-				this.$set(this[key][index].children[i], 'loaded', 'loaded');
-			},
-			//监听image加载失败
-			onImageError(key, index, i) {
-				this[key][index].children[i].PicURL = '/static/errorImage.jpg';
-			},
-			//https://weex.apache.org/zh/docs/events/common-events.html#appear
-			goToCategory(event, refId, index) {
-				if(this.currentIndex==index){return ;}
-				clearTimeout(this.timer);
-				this.stopAppear = true;
+		onappear($event, refId, index) {
+			if ($event.direction == 'down') {
+				this.checkScroll($event.direction, refId, index);
+			}
+		},
+		checkScroll(direction, refId, index) {
+			if (this.stopAppear) {
+				return false;
+			}
+			if (Math.abs(index - this.currentIndex) > 1 && plus.os.name == 'iOS') {
+				return;
+			}
+			const ref = this.$refs[refId];
+			this.leftScrollToElement(index, ref[0]);
+			if (direction == 'down') {
 				this.currentIndex = index;
-				
-				const target = event.target;
-				const ref = this.$refs[refId];
-				this.leftScrollToElement(index,target);
-				ref && dom.scrollToElement(ref[0], { offset: 0 });
-				if(plus.os.name=='Android'){
-					this.timer = setTimeout(()=>{
-						this.stopAppear = false;
-					},1000)
-				}else{
-					this.timer = setTimeout(()=>{
-						this.stopAppear = false;
-					},300)
-				}
-			},
-			ondisappear($event,refId,index){
-				if($event.direction=='up'){
-					this.checkScroll($event.direction,refId,index);
-				}
-			}, 
-			onappear($event,refId,index){
-				if($event.direction=='down'){
-					this.checkScroll($event.direction,refId,index);
-				}
-			},
-			checkScroll(direction,refId,index){
-				if(this.stopAppear){
-					return false;
-				}
-				if(Math.abs(index - this.currentIndex)>1&&plus.os.name=='iOS'){
-					return ;
-				}
-				const ref = this.$refs[refId];
-				this.leftScrollToElement(index,ref[0]);
-				if(direction=='down'){
-					this.currentIndex = index;
-				}
-				if(direction=='up'){
-					this.currentIndex = parseInt(index)+1;
-				}
-			},
-			leftScrollToElement(index,target){
-				if(plus.os.name=='Android'){
-					//安卓滚动的动画有回弹，左侧滚动体验不好，关闭动画
-					index > 0 && dom.scrollToElement(target, { offset: -100 ,animated:false});
-				}else{
-					index > 0 && dom.scrollToElement(target, { offset: -100 });
-				}
 			}
-			
+			if (direction == 'up') {
+				this.currentIndex = parseInt(index) + 1;
+			}
+		},
+		leftScrollToElement(index, target) {
+			if (plus.os.name == 'Android') {
+				//安卓滚动的动画有回弹，左侧滚动体验不好，关闭动画
+				index > 0 && dom.scrollToElement(target, { offset: -100, animated: false });
+			} else {
+				index > 0 && dom.scrollToElement(target, { offset: -100 });
+			}
 		}
 	}
+};
 </script>
 
-<style >
-	.page {
-		position: absolute;
-		width: 750upx;
-		top: 0;
-		bottom: 0;
-		background-color: #f2f2f2;
-	}
+<style>
+.page {
+	position: absolute;
+	width: 750upx;
+	top: 0;
+	bottom: 0;
+	background-color: #f2f2f2;
+}
 
-	.left {
-		position: absolute;
-		width: 180upx;
-		top: 0;
-		bottom: 0;
-		left: 0;
-		z-index: 10;
-	}
+.left {
+	position: absolute;
+	width: 180upx;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 10;
+}
 
-	.left-panel {
-		width: 180upx;
-		height: 100upx;
-		justify-content: center;
-		flex-direction: row;
-		align-items: center;
-		background-color: #fff;
-	}
-	.left-panel-active {
-		width: 180upx;
-		height: 100upx;
-		align-items: center;
-		flex-direction: row;
-		background-color: #f2f2f2;
-	}
-	.left-text {
-		text-align: center;
-		font-size: 28upx;
-		color: #3c3c3c;
-	}
-	.left-text-active {
-		font-size: 30upx;
-		font-weight: 600;
-		color: #E60012;
-	}
-	.left-block {
-		position: absolute;
-		width: 10upx;
-		top: 25upx;
-		bottom: 25upx;
-		left: 0;
-		background-color: #fff;
-	}
-	.left-block-active {
-		background-color: #FF0000;
-	}
-	
-	.right {
-		position: absolute;
-		width: 550upx;
-		top: 0;
-		bottom: 0;
-		right: 0;
-		z-index: 10;
-		background-color: #fff;
-	}
-	.right-panel {
-		width: 550upx;
-		padding: 0 17upx 20upx 0upx;
-		background-color: #fff;
-	}
-	.right-title{
-		width: 550upx;
-		font-size: 28upx;
-		height: 80upx;
-		line-height: 80upx;
-		padding-left: 20upx;
-		justify-content: center;
-		font-weight: 600;
-		color: #2d2d2d;
-		background-color: #f2f2f2;
-	}
-	.right-list {
-		margin-top: 40upx;
-		width: 550upx;
-		padding-left: 20upx;
-		flex-direction: row;
-		flex-wrap: wrap;
-	}
-	.right-box {
-		width: 170upx;
-		margin-bottom: 30upx;
-		justify-content: center;
-		align-items: center;
-		flex-wrap: wrap;
-		flex-direction: row;
-	}
-	.image-wrapper {
-		width: 106upx;
-		height: 106upx;
-		margin: 0 34upx;
-		position:relative;
-	}
-	.right-image {
-		width: 106upx;
-		height: 106upx;
-		position:relative;
-		border-radius: 8upx;
-	}
-	.right-text {
-		margin-top: 5upx;
-		width: 170upx;
-		text-align: center;
-		font-size: 26upx;
-	}
+.left-panel {
+	width: 180upx;
+	height: 100upx;
+	justify-content: center;
+	flex-direction: row;
+	align-items: center;
+	background-color: #fff;
+}
+.left-panel-active {
+	width: 180upx;
+	height: 100upx;
+	align-items: center;
+	flex-direction: row;
+	background-color: #f2f2f2;
+}
+.left-text {
+	text-align: center;
+	font-size: 28upx;
+	color: #3c3c3c;
+}
+.left-text-active {
+	font-size: 30upx;
+	font-weight: 600;
+	color: #e60012;
+}
+.left-block {
+	position: absolute;
+	width: 10upx;
+	top: 25upx;
+	bottom: 25upx;
+	left: 0;
+	background-color: #fff;
+}
+.left-block-active {
+	background-color: #ff0000;
+}
+
+.right {
+	position: absolute;
+	width: 550upx;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	z-index: 10;
+	background-color: #fff;
+}
+.right-panel {
+	width: 550upx;
+	padding: 0 17upx 20upx 0upx;
+	background-color: #fff;
+}
+.right-title {
+	width: 550upx;
+	font-size: 28upx;
+	height: 80upx;
+	line-height: 80upx;
+	padding-left: 20upx;
+	justify-content: center;
+	font-weight: 600;
+	color: #2d2d2d;
+	background-color: #f2f2f2;
+}
+.right-list {
+	margin-top: 40upx;
+	width: 550upx;
+	padding-left: 20upx;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+.right-box {
+	width: 170upx;
+	margin-bottom: 30upx;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	flex-direction: row;
+}
+.image-wrapper {
+	width: 106upx;
+	height: 106upx;
+	margin: 0 34upx;
+	position: relative;
+}
+.right-image {
+	width: 106upx;
+	height: 106upx;
+	position: relative;
+	border-radius: 8upx;
+}
+.right-text {
+	margin-top: 5upx;
+	width: 170upx;
+	text-align: center;
+	font-size: 26upx;
+}
 </style>

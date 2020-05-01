@@ -6,28 +6,33 @@
 		mapMutations
 	} from 'vuex';
 	export default {
-		globalData:{
-			text: 'text'  
+		onUniNViewMessage: function(e) {
+			console.log("App.vue收到数据")
+			console.log(JSON.stringify(e.data))
+		},
+		globalData: {
+			text: 'text'
 		},
 		methods: {
 			...mapMutations(['login']),
 		},
 		onLaunch: function() {
-			// #ifdef APP-PLUS
-			plus.screen.lockOrientation('portrait-primary'); //锁定
-			// #endif
-				
-			let userInfo = uni.getStorageSync('userInfo') || '';
+
+			//#ifdef APP-PLUS
+			plus.screen.lockOrientation('portrait-primary'); //锁定屏幕方向 
+			
+			// APP检测更新 具体可以参考：https://ask.dcloud.net.cn/article/35667
+			//#endif
+      let userInfo = uni.getStorageSync('userInfo') || '';
 			if(userInfo.UserAccountID){
 				//更新登陆状态
 				uni.getStorage({
-					key: 'userInfo',
+					key: 'USER_KEY',
 					success: (res) => {
 						this.login(res.data);
 					}
 				});
 			}
-			
 		},
 		onShow: function() {
 			console.log('App Show')
@@ -39,11 +44,10 @@
 </script>
 
 <style lang='scss'>
-	
 	/*
 		全局公共样式和字体图标
 	*/
-   /* #ifndef APP-PLUS-NVUE */  
+	/* #ifndef APP-PLUS-NVUE */
 	@font-face {
 		font-family: mallicon;
 		font-weight: normal;
@@ -342,11 +346,12 @@
 	.icon-dianzan-ash:before {
 		content: "\e617";
 	}
-	 /* #endif */  
+
+	/* #endif */
 
 
 
-	/* #ifndef APP-PLUS-NVUE */  
+	/* #ifndef APP-PLUS-NVUE */
 	view,
 	scroll-view,
 	swiper,
@@ -373,19 +378,21 @@
 	video {
 		box-sizing: border-box;
 	}
-	image{
+
+	image {
 		will-change: transform;
 	}
-	 /* #endif */  
+
+	/* #endif */
 	/* 骨架屏替代方案 */
 	.Skeleton {
 		background-color: #f3f3f3;
 		padding: 20upx 0;
 		border-radius: 8upx;
 	}
-	
+
 	/* 图片载入替代方案 */
-	 /* #ifndef APP-PLUS-NVUE */  
+	/* #ifndef APP-PLUS-NVUE */
 	.image-wrapper {
 		font-size: 0;
 		background-color: #f3f3f3;
@@ -402,14 +409,15 @@
 			}
 		}
 	}
-	 /* #endif */  
+
+	/* #endif */
 	.clamp {
 		overflow: hidden;
 		text-overflow: ellipsis;
-		 /* #ifndef APP-PLUS-NVUE */  
+		/* #ifndef APP-PLUS-NVUE */
 		white-space: nowrap;
 		display: block;
-    /* #endif */  
+		/* #endif */
 	}
 
 	.common-hover {
@@ -424,13 +432,13 @@
 		left: 0;
 		right: 0;
 		height: 0;
-		/* #ifndef APP-PLUS-NVUE */  
+		/* #ifndef APP-PLUS-NVUE */
 		content: '';
-		/* #endif */  
+		/* #endif */
 		transform: scaleY(.5);
-		border-bottom-width: 1px;  
-		border-bottom-style: solid;  
-		border-bottom-color: #E4E7ED;  
+		border-bottom-width: 1px;
+		border-bottom-style: solid;
+		border-bottom-color: #E4E7ED;
 		/* border-bottom-: 1px solid $border-color-base; */
 	}
 
@@ -441,9 +449,9 @@
 	.b-t:after {
 		top: 0;
 	}
-	
+
 	/* button样式改写 */
-	/* #ifndef APP-PLUS-NVUE */  
+	/* #ifndef APP-PLUS-NVUE */
 	uni-button,
 	button {
 		height: 80upx;
@@ -453,7 +461,7 @@
 
 		&.no-border:before,
 		&.no-border:after {
-			border-width: 0px;  
+			border-width: 0px;
 		}
 	}
 
@@ -461,7 +469,8 @@
 	button[type=default] {
 		color: #303133;
 	}
-	/* #endif */  
+
+	/* #endif */
 	/* input 样式 */
 	.input-placeholder {
 		color: #999999;
