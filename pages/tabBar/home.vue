@@ -126,13 +126,13 @@
 			var BMap = new bmap.BMapWX({ 
 				ak: 'i0BXsy4TnbXQ51USDMHdlhoOb2kgEmrz'
 			});
-			var webView = this.$mp.page.$getAppWebview();
 			var fail = function(data) { 
 				console.log(JSON.stringify(data)) 
 			}; 
 			var success = function(data) { 
 				console.log(JSON.stringify(data))
 				// #ifdef APP-PLUS  
+				var webView = this.$mp.page.$getAppWebview();
 				// https://uniapp.dcloud.io/collocation/pages?id=app-titlenview-searchinput
 				// 动态修改原生导航栏: https://ask.dcloud.net.cn/article/35374
 				webView.setTitleNViewButtonStyle(0, {  
