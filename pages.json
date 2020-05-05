@@ -4,10 +4,9 @@
 		{
 			"path": "pages/tabBar/home",
 			"style": {
-				// #ifdef MP 
-				"navigationBarTitleText": "Dloud商城",
-				"navigationStyle": "custom",
-				// #endif 
+				// #ifdef MP
+				"navigationBarTitleText": "品牌联盟商城X",
+				// #endif
 				"app-plus": {
 					// https://uniapp.dcloud.io/collocation/pages?id=app-pulltorefresh
 					"pullToRefresh": {
@@ -82,10 +81,7 @@
 		}, {
 			"path": "pages/tabBar/user",
 			"style": {
-				"navigationBarTitleText": "我的",
-				// #ifdef MP
-				"navigationStyle": "custom",
-				// #endif
+				"navigationBarTitleText": "个人中心",
 				"app-plus": {
 					"bounce": "none",
 					"titleNView": {
@@ -104,6 +100,7 @@
 		}, {
 			"path": "pages/search/search",
 			"style": {
+				"navigationBarTitleText": "搜索商品",
 				"app-plus": {
 					"titleNView": {
 						"searchInput": {
@@ -124,6 +121,7 @@
 		}, {
 			"path": "pages/product/list",
 			"style": {
+				"navigationBarTitleText": "商品列表",
 				"app-plus": {
 					"pullToRefresh": {
 						"support": true,

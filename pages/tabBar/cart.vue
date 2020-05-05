@@ -12,7 +12,7 @@
 				<view class="navigator" @click="navToLogin">去登陆</view>
 			</view>
 		</view>
-		<view v-else>
+		<view v-else class="cart_box">
 			<!-- 列表 -->
 			<view class="cart-list">
 				<block v-for="(item, index) in cartList" :key="item.GoodsID">
@@ -29,7 +29,7 @@
 							<view class="mallicon icon-xuanzhong2 checkbox" :class="{ checked: item.checked }" @click="check('item', index)"></view>
 						</view>
 						<view class="item-right">
-							<text class="clamp title">{{ item.GoodsName }}</text>
+							<text class="clamp title">{{ item.GoodsName }}{{ item.GoodsName }}</text>
 							<view class="attr-box">
 								<text class="attr">{{ item.GoodsModel }}</text>
 								<text class="attr">{{ item.GoodsAttrVal }}</text>
@@ -49,6 +49,7 @@
 								></uni-number-box>
 							</view>
 						</view>
+						<image src="../../static/icon_delete.png" class="del-btn" @click="deleteCartItem(index)"></image>
 					</view>
 				</block>
 			</view>
@@ -58,13 +59,13 @@
 					<image :src="allChecked ? '/static/selected.png' : '/static/select.png'" mode="aspectFit" @click="check('all')"></image>
 					<view class="selected-all-btn" @click="check('all')">全选</view>
 				</view>
-				<block v-if="!isDelete" >
+				<block v-if="!isDelete">
 					<view class="total-box">
 						<text class="price">合计：¥ {{ total }}</text>
 					</view>
 					<button type="primary" class="no-border confirm-btn" @click="createOrder">去结算（{{ cartNum }}）</button>
 				</block>
-				<button type="primary"  class="no-border confirm-btn" v-if="isDelete" @click="deleteCartItems">删除商品</button>
+				<button type="primary" class="no-border confirm-btn" v-if="isDelete" @click="deleteCartItems()">删除商品</button>
 			</view>
 		</view>
 	</view>
@@ -83,7 +84,10 @@ export default {
 			allChecked: false, //全选状态  true|false
 			empty: false, //空白页现实  true|false
 			cartList: [],
-			isDelete:false,
+			isDelete: false,
+			// #ifdef MP
+			editText:"编辑",
+			// #endif
 		};
 	},
 	onLoad() {
@@ -119,18 +123,24 @@ export default {
 		}
 	},
 	onNavigationBarButtonTap() {
-		// #ifdef APP-PLUS  
+		// #ifdef APP-PLUS
 		var webView = this.$mp.page.$getAppWebview();
 		// https://uniapp.dcloud.io/collocation/pages?id=app-titlenview-searchinput
 		// 动态修改原生导航栏: https://ask.dcloud.net.cn/article/35374
-		let str = this.isDelete?"编辑":"完成";
-		 webView.setTitleNViewButtonStyle(0, {
-			text: str  
-		 });
-		// #endif 
+		let str = this.isDelete ? '编辑' : '完成';
+		webView.setTitleNViewButtonStyle(0, {
+			text: str
+		});
 		this.isDelete = !this.isDelete;
+		// #endif
 	},
 	methods: {
+		// #ifdef MP
+		editCart(){
+			this.isDelete = !this.isDelete;
+			this.editText = this.isDelete ? '编辑' : '完成';
+		},
+		// #endif
 		//请求数据
 		loadData() {
 			this.$Request.get(this.$api.home.getCartList).then(
@@ -176,22 +186,36 @@ export default {
 		},
 		//数量
 		numberChange(data) {
-			console.log("CartNum: " + data.number);
+			console.log('CartNum: ' + data.number);
 			this.cartList[data.index].CartNum = data.number;
 			this.calcTotal();
 		},
-		//删除
+		deleteCartItem(index){
+			uni.showModal({
+				content: '确认删除该商品吗？',
+				success: e => {
+					if (e.confirm) {
+						let list = this.cartList;
+						let row = list[index];
+						
+						this.cartList.splice(index, 1);
+						this.calcTotal();
+					}
+				}
+			});
+		},
+		//批量删除
 		deleteCartItems() {
 			let list = [];
 			this.cartList.forEach((v, k) => {
-				console.log("k: " + k);
-				if (this.cartList[k].checked===false) {
+				console.log('k: ' + k);
+				if (this.cartList[k].checked === false) {
 					list.push(this.cartList[k]);
 				}
 			});
-			
+
 			if (this.cartList.length === list.length) {
-				this.$utils.showMsg("请选择商品")
+				this.$utils.showMsg('请选择商品');
 				return false;
 			}
 			uni.showModal({
@@ -199,12 +223,12 @@ export default {
 				success: e => {
 					if (e.confirm) {
 						this.cartList = list;
+						this.calcTotal();
 					}
 				}
 			});
-			
 		},
-		
+
 		//计算总价
 		calcTotal() {
 			let list = this.cartList;
@@ -319,7 +343,12 @@ export default {
 		background: #fff;
 		border-radius: 50px;
 	}
-
+	.del-btn{
+		height: 60rpx;
+		width: 60rpx;
+		margin-top: -6rpx;
+		margin-right: -40rpx;
+	}
 	.item-right {
 		display: flex;
 		flex-direction: column;
@@ -430,9 +459,8 @@ export default {
 		background: $uni-color-primary;
 		box-shadow: 1px 2px 5px rgba(217, 60, 93, 0.72);
 		position: absolute;
-		right:30upx;
+		right: 30upx;
 	}
-	
 }
 
 /* 复选框选中状态 */

@@ -1,5 +1,12 @@
 <template>
 	<view class="box-padding">
+		<!-- 小程序头部兼容 -->
+		<!-- #ifdef MP -->
+		<view class="mp-search-box">
+			<input class="ser-input" type="text" placeholder="输入关键字搜索" v-model="searchKey"/>
+			<text style="margin-left: 20rpx;color: #b4b4b4;font-size: 28rpx;" @click="toSearch()">搜索</text>
+		</view>
+		<!-- #endif -->
 		<view class="f-header m-t">
 			<text class="tit">搜索历史</text>
 			<text class="mallicon icon-fork"></text>
@@ -43,6 +50,9 @@ export default {
 		this.loadData();
 	},
 	methods: {
+		toBack(){
+			uni.navigateBack();  
+		},
 		loadData() {
 			this.$Request.get(this.$api.home.getSearchTags).then(res => {
 				this.tagList = res.data;
@@ -51,25 +61,69 @@ export default {
 			});
 		},
 		navTo(tagName) {
+			// #ifdef MP
+			uni.navigateTo({
+				url:'../product/list?key='+tagName,
+			})
+			// #endif
+			// #ifndef MP
 			uni.redirectTo({
 				url:'../product/list?key='+tagName,
 			})
-			// uni.navigateTo({
-			// 	url:'../product/list?key='+tagName,
-			// })
+			// #endif
 		},
+		toSearch(){
+			let key = this.searchKey ? '?key=' + this.searchKey : '';
+			// #ifdef MP
+			uni.navigateTo({
+				url: '../product/list' + key,
+			})
+			// #endif
+			// #ifndef MP
+			uni.redirectTo({
+				url: '../product/list' + key,
+			})
+			// #endif
+			plus.key.hideSoftKeybord();
+		}
 	},
 	onNavigationBarButtonTap(e) {
 		let key = this.searchKey ? '?key=' + this.searchKey : '';
+		// #ifdef MP
+		uni.navigateTo({
+			url: '../product/list' + key,
+		})
+		// #endif
+		// #ifndef MP
 		uni.redirectTo({
 			url: '../product/list' + key,
 		})
+		// #endif
 		plus.key.hideSoftKeybord();
 	},
 };
 </script>
 
 <style  lang="scss">
+	/* #ifdef MP */
+	.mp-search-box{
+		display: flex;
+		align-items: center;
+		justify-content:space-around;
+		.ser-input {
+			width: 80%;
+			height: 66upx;
+			line-height: 66upx;
+			text-align: center;
+			font-size: 28upx;
+			color: $font-color-base;
+			border-radius: 20px;
+			background: #f5f5f5;
+		}	
+	}
+	/* #endif */
+	
+	
 	.box-padding{
 		width: 750rpx;
 		padding: 0 30rpx ;

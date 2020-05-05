@@ -1,29 +1,29 @@
 <template>
 	<view class="container">
-		<!-- 小程序头部兼容 -->
-		<!-- #ifdef MP -->
-		<view class="mp-search-box">
-			<input class="ser-input" type="text" value="输入关键字搜索" disabled />
-		</view>
-		<!-- #endif -->
-
+		
 		<!-- 头部轮播 -->
 		<view class="carousel-section">
 			<!-- 标题栏和状态栏占位符 -->
 			<view class="titleNview-placing"></view>
 			<!-- 背景色区域 -->
+			<!-- #ifndef MP -->
 			<view class="titleNview-background" :style="{backgroundColor:titleNViewBackground}"></view>
+			<!-- #endif -->
 			<swiper class="carousel" circular autoplay="true" duration="1000" @change="swiperChange">
 				<swiper-item v-for="(item, index) in carouselList" :key="index" class="carousel-item" @click="navToDetailPage({title: '轮播广告'})">
 					<image :src="item.src" />
 				</swiper-item>
 			</swiper>
+			
 			<!-- 自定义swiper指示器 -->
 			<view class="swiper-dots">
 				<text class="num">{{swiperCurrent+1}}</text>
 				<text class="sign">/</text>
 				<text class="num">{{swiperLength}}</text>
 			</view>
+			<!-- #ifdef MP -->
+			<input class="ser-input" type="text" value="点击搜索" disabled @click="toSearch()" />
+			<!-- #endif -->
 		</view>
 		<!-- 分类 -->
 		<view class="cate-section">
@@ -158,6 +158,12 @@
 			this.loadData("refrash");
 		},
 		methods: {
+			toSearch(){
+				uni.navigateTo({
+					url: '/pages/search/search'
+				})
+			},
+			
 			getSeckillGoodsList(type) {
 				this.$Request.get(this.$api.home.SeckillGoods).then(res => {
 					this.seckillGoodsList = res.data;
@@ -222,7 +228,9 @@
 			swiperChange(e) {
 				const index = e.detail.current;
 				this.swiperCurrent = index;
+				// #ifndef MP
 				this.titleNViewBackground = this.carouselList[index].background;
+				// #endif
 			},
 			navToList(key){
 				uni.navigateTo({
@@ -273,15 +281,34 @@
 	.m-t {
 		margin-top: 16upx;
 	}
-
+	/* #ifdef MP */
+	.ser-input {
+		position: absolute;
+		top: 8rpx;
+		width: 96%;
+		margin-left: 2%;
+		text-align: center;
+		height: 66upx;
+		line-height: 66upx;
+		text-align: center;
+		font-size: 28upx;
+		color: $font-color-base;
+		border-radius: 20px;
+		background: rgba(255, 255, 255,1);
+	}
+	/* #endif */
+	
 	/* 头部 轮播图 */
 	.carousel-section {
 		position: relative;
 		padding-top: 10px;
+		
 
 		.titleNview-placing {
 			height: var(--status-bar-height);
+			/* #ifndef MP */
 			padding-top: 44px;
+			/* #endif */
 			box-sizing: content-box;
 		}
 
@@ -290,7 +317,12 @@
 			top: 0;
 			left: 0;
 			width: 100%;
+			/* #ifdef MP */
+			height: 300upx;
+			/* #endif */
+			/* #ifndef MP */
 			height: 374upx;
+			/* #endif */
 			transition: .4s;
 		}
 	}
@@ -298,7 +330,7 @@
 	.carousel {
 		width: 100%;
 		height: 294upx;
-
+		margin-top: 10rpx;
 		.carousel-item {
 			width: 100%;
 			height: 100%;
